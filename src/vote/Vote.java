@@ -40,7 +40,7 @@ public class Vote extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
-		request. setCharacterEncoding("utf-8");
+		
 		java.io.PrintWriter out = response.getWriter( );	
 		
 		//连接数据库

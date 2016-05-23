@@ -42,7 +42,7 @@ public class IssueVote extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
-		
+		request. setCharacterEncoding("utf-8");
 		//获取投票主题
 		String theme = request.getParameter("theme");
 	System.out.println(theme);	
