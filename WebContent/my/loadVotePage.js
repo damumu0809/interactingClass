@@ -63,7 +63,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
 
             if(hasVoted == false){
                 //未投票，显示投票页面
-                //并显示【未投票】
+                //并显示[未投票]
                 if(multipleChoice == 1){
                     //多选
                     txt = txt +
@@ -106,7 +106,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                 $("#collapseVoteOne").attr("id", "collapseVote"+voteId);
                 $("#voteA").attr("href", "#collapseVote"+voteId);
                 $("#voteA").attr("aria-controls", "#collapse"+voteId);
-                $("#voteA").text(theme+"【未投票】");
+                $("#voteA").text(theme+"[未投票]");
                 $("#voteA").attr("id","voteA"+voteId);
                 //空白项不显示
                                     if(option6 == ""){
@@ -136,27 +136,39 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                 txt = txt +
                     '<p>'+option1+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n1+'%;">'+number1+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n1+'%;">'+
+                    number1+
+                    '</div>'+
                     '</div>'+
                     '<p>'+option2+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n2+'%;">'+number2+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n2+'%;">'+
+                    number2+
+                    '</div>'+
                     '</div>'+
                     '<p>'+option3+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n3+'%;">'+number3+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n3+'%;">'+
+                    number3+
+                    '</div>'+
                     '</div>'+
                     '<p>'+option4+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n4+'%;">'+number4+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n4+'%;">'+
+                    number4+
+                    '</div>'+
                     '</div>'+
                     '<p>'+option5+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n5+'%;">'+number5+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n5+'%;">'+
+                    number5+
+                    '</div>'+
                     '</div>'+
                     '<p>'+option6+'</p>' +
                     '<div class="progress">'+
-                    '<div class="bar" style="width:'+n6+'%;">'+number6+'</div>'+
+                    '<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:'+n6+'%;">'+
+                    number6+
+                    '</div>'+
                     '</div>';
 
 
