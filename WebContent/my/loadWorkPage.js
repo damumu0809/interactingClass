@@ -51,6 +51,7 @@ $("#student").click(function(){
                         '</div>';
                 }else{
                     //未完成显示作业内容和上传界面
+                    //并显示【未完成】
                     txt1 ='<form action="/interactingClass/UploadWork" method="post" enctype="multipart/form-data">'+
                         '<input type="file" name="file"  />'+
                         '<input type="hidden" name="taskNum" value='+taskNum+ ' />'+

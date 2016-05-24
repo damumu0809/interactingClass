@@ -63,7 +63,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
 
             if(hasVoted == false){
                 //未投票，显示投票页面
-
+                //并显示【未参与投票】
                 if(multipleChoice == 1){
                     //多选
                     txt = txt +
