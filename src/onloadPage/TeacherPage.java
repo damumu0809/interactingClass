@@ -70,15 +70,18 @@ public class TeacherPage extends HttpServlet {
 				theme = rs1.getString("theme");
 				
 				String sql = "SELECT * FROM homework WHERE taskNum="+taskNum+"";
+				System.out.println(sql);
 				ResultSet rs2 = db.query2(sql);
+				
+				hrefs_files.clear();
 				while(rs2.next()){
 					href = rs2.getString("href"); 
+				System.out.println(href);
 					name = rs2.getString("file_name");
 					href_file = new JSONObject();
 					href_file.put("href", href);
 					href_file.put("file", name);
-					hrefs_files.add(href_file);
-					
+					hrefs_files.add(href_file);	
 				}
 				
 				work = new JSONObject();

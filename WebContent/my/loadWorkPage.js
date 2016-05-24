@@ -98,16 +98,6 @@ $("#teacher").click(function(){
 
             theme = item.theme;
             taskNum = item.taskNum;
-            hrefs_files = item.hrefs_files;//数组
-            hrefs_files.forEach(function(item, index, array){
-                href = item.href;
-                name = item.file;
-                txt3 =  '<a href='+href+  '>' +name+ '</a>';
-            });
-            txt3 =   '</div>'+
-                '</div>'+
-                '</div>';
-
             $("#homeworkAccordion").append(txt1);
             $("#workOne").attr("id", "work"+taskNum);
             $("#collapseWorkOne").attr("aria-labelledby", "heading"+taskNum);
@@ -118,7 +108,19 @@ $("#teacher").click(function(){
             $("#WorkA").attr("id","WorkA"+taskNum);
             $("#panelBody p").text(theme);
 
+            hrefs_files = item.hrefs_files;//数组
+            hrefs_files.forEach(function(item, index, array){
+                href = item.href;
+                name = item.file;
+                txt3 =  '<a href='+href+  '>' +name+ '</a>';
+                $("#panelBody").append(txt3);
+            });
+            txt3 =
+                '</div>'+
+                '</div>'+
+                '</div>';
             $("#panelBody").append(txt3);
+
             $("#panelBody").attr("id","panelBody"+taskNum);
         });
 
@@ -133,9 +135,9 @@ $("#teacher").click(function(){
                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
                 '<h4 class="modal-title" id="myModalLabelWork">发布作业</h4>'+
                 '</div>'+
-                '<form class="form-horizontal" action="/interacting/IssueWork" method="post">'+
+                '<form class="form-horizontal" action="/interactingClass/IssueWork" method="post">'+
                 '<div class="modal-body">'+
-                '+<div class="form-group">'+
+                '<div class="form-group">'+
                 '<div class="col-sm-offset-1 col-sm-9">'+
                 '<textarea class="form-control" rows="3" placeholder="请输入作业内容" name="theme"></textarea>'+
                 '</div>'+
@@ -212,7 +214,7 @@ $("#teacher").click(function(){
         '</div>'+
         '</div>';
 
-    $("#work").append(txt12);
+    $("#homework").append(txt12);
 
 });
 

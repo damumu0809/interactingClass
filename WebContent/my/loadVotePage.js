@@ -68,12 +68,12 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                     //多选
                     txt = txt +
                         '<form action="/interactingClass/Vote" method="post">'+
-                        '<input type="checkbox" value="option1">'+option1+
-                        '<input type="checkbox" value="option2">'+option2+
-                        '<input type="checkbox" value="option3">'+option3+
-                        '<input type="checkbox" value="option4">'+option4+
-                        '<input type="checkbox" value="option5">'+option5+
-                        '<input type="checkbox" value="option6">'+option6+
+                        '<input type="checkbox" value="option1" name="check1">'+option1+
+                        '<input type="checkbox" value="option2" name="check2">'+option2+
+                        '<input type="checkbox" value="option3" name="check3">'+option3+
+                        '<input type="checkbox" value="option4" name="check4">'+option4+
+                        '<input type="checkbox" value="option5" name="check5">'+option5+
+                        '<input type="checkbox" value="option6" name="check6">'+option6+
                         '<input type="hidden" name="voteId" value=' +voteId+'>'+
                         '<input type="hidden" name="multipleChoice" value=' +multipleChoice+'>'+
                         '<button type="submit">参与投票</button>'+

@@ -126,7 +126,7 @@ public class UploadWork extends HttpServlet {
 	            sizeInBytes = fi.getSize();
 	            // 写入文件
 	            filePath = getServletContext().getInitParameter("file-upload");
-	            
+	            System.out.println(filePath);
 	            if( fileName.lastIndexOf("\\") >= 0 ){
 	            	filePath = filePath + fileName.substring( fileName.lastIndexOf("\\")+1);
 	               file = new File(filePath ) ;
@@ -134,7 +134,7 @@ public class UploadWork extends HttpServlet {
 	            	filePath = filePath + fileName.substring(fileName.lastIndexOf("\\")+1);
 	                file = new File(filePath ) ;
 	            }
-	           
+	            System.out.println(filePath);
 	            fi.write( file ) ;
 	            fileName = fileName.substring( fileName.lastIndexOf("\\")+1);
 	            out.println("Uploaded Filename: " + fileName + "<br>");
@@ -168,7 +168,7 @@ public class UploadWork extends HttpServlet {
    System.out.println(map.get("taskNum"));
           int taskNum = Integer.parseInt(map.get("taskNum"));
           
-          
+          System.out.println(filePath);
           sqlInsert = "INSERT INTO homework(file_name, href, owner, time, taskNum)"+
           " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+"xiaomu\",\""+uploadTime+"\",\""+taskNum+"\")";
      
@@ -181,7 +181,7 @@ public class UploadWork extends HttpServlet {
     System.out.println("3");      
           boolean rs1 = db.query1(sqlInsert);
         //实现alert之后再跳转页面
-  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./StudentPage';</script>");
+  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./index.html';</script>");
 
 	      
 	      /*

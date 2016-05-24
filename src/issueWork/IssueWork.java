@@ -74,7 +74,7 @@ public class IssueWork extends HttpServlet {
     System.out.println(insert);
     	db.query1(insert);
 
-    	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./TeacherPage';</script>");
+    	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.html';</script>");
 	}
 
 }

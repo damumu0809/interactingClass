@@ -70,15 +70,41 @@ public class Vote extends HttpServlet {
 			db.query1(sql2);
 		}else{
 			//多选
+			//未选项为null 已选项为value
+			int optionId[] = new int[6];
+			String optionNum;
+			for(int i=1,j=0; i <=6; i++){
+				if(request.getParameter("check"+i)!= null){
+					optionId[j]=i;
+					j++;
+				}
+			}
 			
-			
+			Date date = new Date();
+	      	//时间格式转换
+	      	SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
+	      	String time = ft.format(date);
+	      	
+	      	
+	      	String sql1;
+	      	String sql2;
+	      	for(int j=0; j<6; j++){
+	      		if(optionId[j]!=0){
+	      			//值为选项num
+	      			optionNum = "number"+optionId[j];
+	      			sql1 = "UPDATE vote SET "+optionNum+"="+optionNum+"+1 WHERE id="+voteId+"";
+	      			System.out.println(sql1);
+	    			db.query1(sql1);
+	    			
+	    			sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId[j]+",\""+time+"\",\"xiaomu\")";
+	    			System.out.println(sql2);
+	    			db.query1(sql2);
+	      		}
+	      	}
 		}
 		
-		
-		
-		
-		
-		
+		out.print("<script type='text/javascript'>alert('投票成功！');window.location.href='./index.html';</script>");
+	
 	}
 
 }
