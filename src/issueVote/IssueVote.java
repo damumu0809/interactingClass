@@ -54,7 +54,7 @@ public class IssueVote extends HttpServlet {
 		String option4 = request.getParameter("option4");
 		String option5 = request.getParameter("option5");
 		String option6 = request.getParameter("option6");
-	System.out.println(option1);
+	System.out.println(option3);
 		
 		//过期时间
 		int year = Integer.parseInt(request.getParameter("year"));

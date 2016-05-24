@@ -52,6 +52,7 @@ $("#student").click(function(){
                 }else{
                     //未完成显示作业内容和上传界面
                     //并显示【未完成】
+                    $("#WorkA"+taskNum).text("第"+taskNum+"次作业 [未完成]");
                     txt1 ='<form action="/interactingClass/UploadWork" method="post" enctype="multipart/form-data">'+
                         '<input type="file" name="file"  />'+
                         '<input type="hidden" name="taskNum" value='+taskNum+ ' />'+
@@ -109,7 +110,10 @@ $("#teacher").click(function(){
             $("#WorkA").attr("id","WorkA"+taskNum);
             $("#panelBody p").text(theme);
 
+
             hrefs_files = item.hrefs_files;//数组
+            //添加已提交几份作业
+            $("#WorkA"+taskNum).text("第"+taskNum+"次作业"+"【已提交数"+hrefs_files.length+"】");
             hrefs_files.forEach(function(item, index, array){
                 href = item.href;
                 name = item.file;

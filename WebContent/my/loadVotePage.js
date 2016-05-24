@@ -48,22 +48,22 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
             hasVoted = item.hasVoted;
 
 
-//                                if(option3 =="null"){
-//                                    option3 = null;
-//                                }
-//                                if(option4 =="null"){
-//                                    option4 = null;
-//                                }
-//                                if(option5 =="null"){
-//                                    option5 = null;
-//                                }
-//                                if(option6 =="null"){
-//                                    option6 = null;
-//                                }
+                                if(option3 == "null"){
+                                    option3 = "";
+                                }
+                                if(option4 =="null"){
+                                    option4 = "";
+                                }
+                                if(option5 =="null"){
+                                    option5 = "";
+                                }
+                                if(option6 =="null"){
+                                    option6 = "";
+                                }
 
             if(hasVoted == false){
                 //未投票，显示投票页面
-                //并显示【未参与投票】
+                //并显示【未投票】
                 if(multipleChoice == 1){
                     //多选
                     txt = txt +
@@ -106,39 +106,60 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                 $("#collapseVoteOne").attr("id", "collapseVote"+voteId);
                 $("#voteA").attr("href", "#collapseVote"+voteId);
                 $("#voteA").attr("aria-controls", "#collapse"+voteId);
-                $("#voteA").text(theme);
+                $("#voteA").text(theme+"【未投票】");
                 $("#voteA").attr("id","voteA"+voteId);
                 //空白项不显示
-//                                    if(option3 == null){
-//                                        $("#panelBody").getAnonymousElementByAttribute("value","option3").attr("display","none");
-//                                    }
-//                                    if(option4 == null){
-//                                        $("#panelBody").getAnonymousElementByAttribute("value","option4").attr("display","none");
-//                                    }
-//                                    if(option5 == null){
-//                                        $("#panelBody").getAnonymousElementByAttribute("value","option5").attr("display","none");
-//                                    }
-//                                    if(option6 == null) {
-//                                        $("#panelBody").getAnonymousElementByAttribute("value", "option6").attr("display", "none");
-//                                    }
-
-
+                                    if(option6 == ""){
+                                        $("#panelBody input:eq(5)").remove();
+                                    }
+                                    if(option5 == ""){
+                                        $("#panelBody input:eq(4)").remove();
+                                    }
+                                    if(option4 == ""){
+                                        $("#panelBody input:eq(3)").remove();
+                                    }
+                                    if(option3 == "") {
+                                        $("#panelBody input:eq(2)").remove();
+                                    }
                
             }else {
                 //已投票，显示投票结果
+                //添加进度条显示
+                var number = number1+ number2+ number3+ number4+ number5+ number6;
+                var n1 = number1/number*100;
+                var n2 = number2/number*100;
+                var n3 = number3/number*100;
+                var n4 = number4/number*100;
+                var n5 = number5/number*100;
+                var n6 = number6/number*100;
+
                 txt = txt +
                     '<p>'+option1+'</p>' +
-                    '<label>'+number1+'</label>' +
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n1+'%;">'+number1+'</div>'+
+                    '</div>'+
                     '<p>'+option2+'</p>' +
-                    '<label>'+number2+'</label>' +
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n2+'%;">'+number2+'</div>'+
+                    '</div>'+
                     '<p>'+option3+'</p>' +
-                    '<label>'+number3+'</label>' +
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n3+'%;">'+number3+'</div>'+
+                    '</div>'+
                     '<p>'+option4+'</p>' +
-                    '<label>'+number4+'</label>' +
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n4+'%;">'+number4+'</div>'+
+                    '</div>'+
                     '<p>'+option5+'</p>' +
-                    '<label>'+number5+'</label>' +
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n5+'%;">'+number5+'</div>'+
+                    '</div>'+
                     '<p>'+option6+'</p>' +
-                    '<label>'+number6+'</label>';
+                    '<div class="progress">'+
+                    '<div class="bar" style="width:'+n6+'%;">'+number6+'</div>'+
+                    '</div>';
+
+
 
                 $("#voteAccordion").append(txt);
                 $("#voteOne").attr("id", "vote" + voteId);
@@ -149,18 +170,22 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                 $("#voteA").text(theme);
                 $("#voteA").attr("id","voteA"+voteId);
                 //空白项不显示
-                //if (option3 == null) {
-                //    $("#panelBody").innerHTML("label").getAnonymousElementByAttribute("text", number3).attr("display", "none");
-                //    if (option4 == null) {
-                //        $("#panelBody").innerHTML("label").getAnonymousElementByAttribute("text", number4).attr("display", "none");
-                //    }
-                //    if (option5 == null) {
-                //        $("#panelBody").innerHTML("label").getAnonymousElementByAttribute("text", number5).attr("display", "none");
-                //    }
-                //    if (option6 == null) {
-                //        $("#panelBody").innerHTML("label").getAnonymousElementByAttribute("text", number6).attr("display", "none");
-                //    }
-                //}
+                if (option6 == "") {
+                    $("#panelBody .progress:eq(5)").remove();
+                    $("#panelBody p:eq(5)").remove();
+                    if (option5 == "") {
+                        $("#panelBody .progress:eq(4)").remove();
+                        $("#panelBody p:eq(4)").remove();
+                    }
+                    if (option4 == "") {
+                        $("#panelBody .progress:eq(3)").remove();
+                        $("#panelBody p:eq(3)").remove();
+                    }
+                    if (option3 == "") {
+                        $("#panelBody .progress:eq(2)").remove();
+                        $("#panelBody p:eq(2)").remove();
+                    }
+                }
             }
             $("#panelBody").attr("id","panelBody"+voteId);
         });
@@ -173,11 +198,11 @@ var addOption ;
 $("#addOption").click(function(){
     if(num < 6){
         num++;
-        addOption = "<div class='form-group'>"+
-            "<div class='col-sm-offset-1 col-sm-7'>"+
-            "<input type='choice' class='form-control' placeholder='选项 "+num+" ' name='option "+num+"'>"+
-        "</div>"+
-        "</div>"
+        addOption = '<div class="form-group">'+
+            '<div class="col-sm-offset-1 col-sm-7">'+
+            '<input type="choice" class="form-control" placeholder="选项'+num+ '"name="option' +num+'" >'+
+        '</div>'+
+        '</div>';
         $("#voteForm").append(addOption);
     }else{
         alert("Sorry,最多6个选项");
