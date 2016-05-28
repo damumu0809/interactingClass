@@ -3,7 +3,9 @@ package onloadPage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -50,13 +52,15 @@ public class TeacherPage extends HttpServlet {
 		java.io.PrintWriter out = response.getWriter( );
 		
         DB db = new DB();
-		String sqlSelect = "SELECT * FROM issueWork";
+		String sqlSelect = "SELECT * FROM issueWork order by id desc";
 		ResultSet rs1 = db.query2(sqlSelect);
 		
 		int taskNum;
 		String theme;
 		String href;
 		String name;
+		String time = null;//发布时间
+		String deadLine = null;//deadLine
 		List hrefs_files = new ArrayList<>();
 		JSONObject href_file; 
 		
@@ -68,6 +72,12 @@ public class TeacherPage extends HttpServlet {
 				
 				taskNum = rs1.getInt("id");
 				theme = rs1.getString("theme");
+				//转换格式
+				Date time1 = new Date(rs1.getLong("time"));
+				Date deadLine1 = new Date(rs1.getLong("deadLine"));
+				SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				time = ft.format(time1);
+				deadLine = ft.format(deadLine1);
 				
 				String sql = "SELECT * FROM homework WHERE taskNum="+taskNum+"";
 				System.out.println(sql);
@@ -87,6 +97,8 @@ public class TeacherPage extends HttpServlet {
 				work = new JSONObject();
 				work.put("taskNum",taskNum);
 				work.put("theme", theme);
+				work.put("time", time);
+	    	    work.put("deadLine", deadLine);
 				work.put("hrefs_files", hrefs_files);
 				allWork.add(work);
 			}	

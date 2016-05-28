@@ -1,7 +1,6 @@
 package issueVote;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -67,8 +66,7 @@ public class IssueVote extends HttpServlet {
 		System.out.println(day);
 		int second = 0;
 		Date expiretime = new Date(year-1900, month-1, day, hour, minute, second);
-		SimpleDateFormat ft1 = new SimpleDateFormat ("yyyy.MM.dd HH:mm");
-		String expireTime = ft1.format(expiretime);
+		long expireTime = expiretime.getTime();
 	System.out.println(expireTime);
 		
 		//单选多选
@@ -76,9 +74,13 @@ public class IssueVote extends HttpServlet {
 		
 		//发布时间
 		Date time = new Date();
-		SimpleDateFormat ft2 = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
-		String issueTime = ft2.format(time);
+		long issueTime = time.getTime();
 	System.out.println(issueTime);
+		
+		if(expireTime <= issueTime){
+			//过期时间有误
+			out.println("<script type='text/javascript'>alert('请选择正确的过期时间！')</script>");
+		}
 		
 		//写入数据库
 		DB db = new DB();
@@ -88,7 +90,7 @@ public class IssueVote extends HttpServlet {
 		db.query1(sqlInsert);
 	System.out.println("success");
 		
-	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.html';</script>");
+	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.jsp?page=1';</script>");
 	}
 
 }

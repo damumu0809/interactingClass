@@ -3,7 +3,9 @@ package votePage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -51,7 +53,7 @@ public class VotePage extends HttpServlet {
 		
 		//读取数据库投票记录
 		DB db = new DB();
-		String sql1 = "SELECT * FROM vote";
+		String sql1 = "SELECT * FROM vote order by id desc";
 		String sql2 = "SELECT * FROM voteRecord";
 		
 		//投票id、主题、选项及票数、单选多选
@@ -63,10 +65,18 @@ public class VotePage extends HttpServlet {
 		
 		//记录是否已投票
 		boolean hasVoted = false;
+		//投票发布时间、过期时间、发布人
+		String issuePerson;
+		long issueTime, expireTime;
+		String issueTimef, expireTimef;
+		boolean hasExpired = false;
 		
 		List allVote =  new ArrayList();
 		JSONObject vote ;
 		
+		Date date = new Date();
+		long time = date.getTime();
+
 		ResultSet rs1 = db.query2(sql1);
 		try {
 			while(rs1.next()){
@@ -86,8 +96,46 @@ public class VotePage extends HttpServlet {
 				number5 = rs1.getInt("number5");
 				number6 = rs1.getInt("number6");
 				multipleChoice = rs1.getInt("multipleChoice");
+				issuePerson = rs1.getString("issuePerson");
+				issueTime = rs1.getLong("issueTime");
+				expireTime = rs1.getLong("expireTime");
 				
+				Date issueTime1 = new Date(issueTime);
+				Date expireTime1 = new Date(expireTime);
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				issueTimef = format.format(issueTime1);
+				expireTimef = format.format(expireTime1);
+			System.out.println(issueTimef);
+			System.out.println(expireTimef);
 				
+				if(time > expireTime){
+					//已过期显示投票结果
+					vote = new JSONObject();
+					hasExpired = true;
+					vote.put("theme", theme);
+					vote.put("voteId", voteId);
+					vote.put("option1", option1);
+					vote.put("option2", option2);
+					vote.put("option3", option3);
+					vote.put("option4", option4);
+					vote.put("option5", option5);
+					vote.put("option6", option6);
+					vote.put("number1", number1);
+					vote.put("number2", number2);
+					vote.put("number3", number3);
+					vote.put("number4", number4);
+					vote.put("number5", number5);
+					vote.put("number6", number6);
+					vote.put("multipleChoice", multipleChoice);
+					vote.put("issuePerson", issuePerson);
+					vote.put("issueTime", issueTimef);
+					vote.put("expireTime", expireTimef);
+					vote.put("hasExpired", hasExpired);
+					System.out.println("已过期");
+					System.out.println(vote);
+				}else{
+				//未过期
+					System.out.println("未过期");
 				//查询是否已投票
 				sql2 = "SELECT * FROM voteRecord WHERE voteId="+voteId+" AND person=\"xiaomu\"";
 			System.out.println(sql2);
@@ -113,6 +161,9 @@ public class VotePage extends HttpServlet {
 					vote.put("number6", number6);
 					vote.put("multipleChoice", multipleChoice);
 					vote.put("hasVoted", hasVoted);
+					vote.put("issuePerson", issuePerson);
+					vote.put("issueTime", issueTimef);
+					vote.put("expireTime", expireTimef);
 				}else {
 					//未投票显示投票
 					hasVoted = false;
@@ -127,9 +178,13 @@ public class VotePage extends HttpServlet {
 					vote.put("option6", option6);
 					vote.put("multipleChoice", multipleChoice);
 					vote.put("hasVoted", hasVoted);
+					vote.put("issuePerson", issuePerson);
+					vote.put("issueTime", issueTimef);
+					vote.put("expireTime", expireTimef);
 				}
-				allVote.add(vote);
-				
+				System.out.println(vote);
+			}
+			allVote.add(vote);
 			}
 			JSONObject message = new JSONObject();
 			message.put("code", 0);
@@ -137,7 +192,8 @@ public class VotePage extends HttpServlet {
 			
 			out.println(message.toString());
 			//在前端根据multipleChoice来加载单选还是多选框
-		} catch (SQLException | JSONException e) {
+		
+		}catch (SQLException | JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

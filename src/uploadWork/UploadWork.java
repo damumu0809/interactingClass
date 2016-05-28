@@ -2,7 +2,7 @@ package uploadWork;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -153,21 +153,28 @@ public class UploadWork extends HttpServlet {
 	      }
 	    //上传时间
       	Date date = new Date();
-      	
-      	//时间格式转换
-      	SimpleDateFormat ft = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
-      	String uploadTime = ft.format(date);
+      	long uploadTime = date.getTime();
       	
       	//连接数据库
 	      	DB db = new DB();
 	      
           String sqlInsert;
           String sqlSelect;
-      	
-          //写入数据库
-   System.out.println(map.get("taskNum"));
+          
+          System.out.println(map.get("taskNum"));
           int taskNum = Integer.parseInt(map.get("taskNum"));
           
+          //判断是否过期
+          sqlSelect = "SELECT * FROM issueWork WHERE id =" + taskNum;
+          ResultSet rs = db.query2(sqlSelect);
+          while(rs.next()){
+        	  if(uploadTime >rs.getLong("deadLine")){
+        		  //过期不能提交
+        		  out.print("<script type='text/javascript'>alert('作业已经超期！');window.location.href='./index.html';</script>");
+        	  }
+          }
+      	
+          //写入数据库
           System.out.println(filePath);
           sqlInsert = "INSERT INTO homework(file_name, href, owner, time, taskNum)"+
           " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+"xiaomu\",\""+uploadTime+"\",\""+taskNum+"\")";
@@ -179,30 +186,15 @@ public class UploadWork extends HttpServlet {
           sqlInsert = sqlInsert.replaceAll("\\\\","/");
     System.out.println(sqlInsert);
     System.out.println("3");      
-          boolean rs1 = db.query1(sqlInsert);
+           db.query1(sqlInsert);
         //实现alert之后再跳转页面
-  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./index.html';</script>");
+  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./index.jsp?page=3';</script>");
 
 	      
 	      /*
 	       * 执行完executeQuery后不能再执行executeQuery
 	       */
-	     /*
-	      //查询语句
-          sqlSelect = "SELECT * FROM homework WHERE owner='ll'";
-          ResultSet rs2 = db.query2(sqlSelect);
-          
-	       try{
-	    	   while(rs2.next()){
-	         		out.println("<a href="+ rs2.getString("href") +">"+rs2.getString("file_name")+"</a>"+"</br>");
-	         		System.out.println(rs2.getString("href"));
-	         	}
-	       }
-	       catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		*/
+	     
 	         	
 	      out.println("</body>");
 	      out.println("</html>");

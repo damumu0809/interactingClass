@@ -1,7 +1,6 @@
 package issueWork;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -58,15 +57,13 @@ public class IssueWork extends HttpServlet {
 		int dYear = Integer.parseInt(year);
 		int dMonth = Integer.parseInt(month);
 		int dDay = Integer.parseInt(day);
-		Date deadLine = new Date(dYear - 1900, dMonth - 1, dDay);
-		SimpleDateFormat ft1 = new SimpleDateFormat ("yyyy.MM.dd");
-		String deadline = ft1.format(deadLine);
+		Date deadLine = new Date(dYear - 1900, dMonth - 1, dDay,0, 0, 0);
+		long deadline = deadLine.getTime();
 	System.out.println(deadline);
 		
 		//发布时间
 		Date date = new Date();
-		SimpleDateFormat ft2 = new SimpleDateFormat ("yyyy.MM.dd HH:mm:ss");
-    	String issueTime = ft2.format(date);
+    	long issueTime = date.getTime();
     	
     	//连接数据库
     	DB db = new DB();
@@ -74,7 +71,7 @@ public class IssueWork extends HttpServlet {
     System.out.println(insert);
     	db.query1(insert);
 
-    	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.html';</script>");
+    	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.jsp?page=3';</script>");
 	}
 
 }

@@ -1,12 +1,17 @@
+<%@ page pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include javax.util.* %>
 <!DOCTYPE html>
-<html>
 <head>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="mycss/index.css">
+    
     <meta charset="UTF-8">
     <title>移动互动课堂</title>
 </head>
 
 <body>
+
 <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -31,13 +36,37 @@
                     </li>
                 </ul>
 
+        <%!int  pagen= 2;%>
+    <% pagen = Interger.parseInt(request.getParameter("page"));
+    out.println(page);
+    if(pagen == 1){%>
+    <script>
+    $("li:eq(1)").attr("class","active");
+    </script>
+        <%   }
+    if(pagen == 2){
+    %>
+    <script>
+    $("li:eq(2)").attr("class","active");
+    </script>
+        <%
+    }
+    if(pagen == 3){
+    %>
+    <script>
+    $("li:eq(3)").attr("class","active");
+    </script>
+        <%
+    }
+%>
 
-                <div class="tab-content">
+
+    <div class="tab-content">
                     <!-- 投票模块-->
                     <div role="tabpanel" class="tab-pane" id="vote">
                         <!-- 投票内容展示-->
                         <!-- 发布投票-->
-                        <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-group-lg  buttonPosition" data-toggle="modal" data-target="#myModal">
                             发布投票
                         </button>
                         <!-- 发布投票模态框 -->
@@ -134,7 +163,7 @@
                                                     </select>
                                                 </div>
                                                 </br>
-                                                <div class="col-sm-offset-3"></div>
+                                                <div class="col-sm-3"></div>
                                                 <div class="col-sm-3">
                                                     <select class="form-control" name="hour">
                                                         <option value="0">00</option>
@@ -190,7 +219,7 @@
                                         </div>
                                         <!-- 模态框footer-->
                                         <div class="modal-footer">
-                                            <button type="submit" data-toggle="modal" data-target="#myModal" id="issue">发布</button>
+                                            <button class="btn btn-primary btn-sm " type="submit" data-toggle="modal" data-target="#myModal" id="issue">发布</button>
                                         </div>
                                     </form>
 
@@ -217,11 +246,10 @@
 </div>
 
 
-
 <script src="bootstrap/js/jquery-1.12.2.min.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
-<script src="my/loadVotePage.js"></script>
-<script src="my/loadWorkPage.js"></script>
+<script src="myjs/loadVotePage.js"></script>
+<script src="myjs/loadWorkPage.js"></script>
 
 </body>
 </html>

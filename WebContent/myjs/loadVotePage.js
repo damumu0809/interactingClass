@@ -14,8 +14,9 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
         var theme;
         var option1, option2, option3, option4, option5, option6;
         var number1, number2, number3, number4, number5, number6;
-        var hasVoted;
+        var hasVoted, hasExpired, issuePerson, issueTime, expireTime;
 
+        var themetxt;
         //遍历数组list
         list.forEach(function(item, index, array){
             txt = '<div class="panel panel-default">'+
@@ -46,6 +47,10 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
             number5 = item.number5;
             number6 = item.number6;
             hasVoted = item.hasVoted;
+            hasExpired = item.hasExpired;
+            issuePerson = item.issuePerson;
+            issueTime = item.issueTime;
+            expireTime = item.expireTime;
 
 
                                 if(option3 == "null"){
@@ -60,70 +65,8 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                                 if(option6 =="null"){
                                     option6 = "";
                                 }
-
-            if(hasVoted == false){
-                //未投票，显示投票页面
-                //并显示[未投票]
-                if(multipleChoice == 1){
-                    //多选
-                    txt = txt +
-                        '<form action="/interactingClass/Vote" method="post">'+
-                        '<input type="checkbox" value="option1" name="check1">'+option1+
-                        '<input type="checkbox" value="option2" name="check2">'+option2+
-                        '<input type="checkbox" value="option3" name="check3">'+option3+
-                        '<input type="checkbox" value="option4" name="check4">'+option4+
-                        '<input type="checkbox" value="option5" name="check5">'+option5+
-                        '<input type="checkbox" value="option6" name="check6">'+option6+
-                        '<input type="hidden" name="voteId" value=' +voteId+'>'+
-                        '<input type="hidden" name="multipleChoice" value=' +multipleChoice+'>'+
-                        '<button type="submit">参与投票</button>'+
-                        '</form>'+
-                        '</div>'+
-                        '</div>';
-                }else{
-                    //单选
-                    txt = txt +
-                        '<form action="/interactingClass/Vote" method="post">'+
-                        '<input type="radio" value="option1" name="vote">'+option1+
-                        '<input type="radio" value="option2" name="vote">'+option2+
-                        '<input type="radio" value="option3" name="vote">'+option3+
-                        '<input type="radio" value="option4" name="vote">'+option4+
-                        '<input type="radio" value="option5" name="vote">'+option5+
-                        '<input type="radio" value="option6" name="vote">'+option6+
-                        '<input type="hidden" name="voteId" value=' +voteId+ '> '+
-                        '<input type="hidden" name="multipleChoice" value=' +multipleChoice+'>'+
-                        '<button type="submit">参与投票</button>'+
-                        '</form>'+
-                        '</div>'+
-                        '</div>';
-
-                }
-
-                $("#voteAccordion").append(txt);
-
-                $("#voteOne").attr("id", "vote"+voteId);
-                $("#collapseVoteOne").attr("aria-labelledby", "heading"+voteId);
-                $("#collapseVoteOne").attr("id", "collapseVote"+voteId);
-                $("#voteA").attr("href", "#collapseVote"+voteId);
-                $("#voteA").attr("aria-controls", "#collapse"+voteId);
-                $("#voteA").text(theme+"[未投票]");
-                $("#voteA").attr("id","voteA"+voteId);
-                //空白项不显示
-                                    if(option6 == ""){
-                                        $("#panelBody input:eq(5)").remove();
-                                    }
-                                    if(option5 == ""){
-                                        $("#panelBody input:eq(4)").remove();
-                                    }
-                                    if(option4 == ""){
-                                        $("#panelBody input:eq(3)").remove();
-                                    }
-                                    if(option3 == "") {
-                                        $("#panelBody input:eq(2)").remove();
-                                    }
-               
-            }else {
-                //已投票，显示投票结果
+            if(hasExpired == true || hasVoted == true){
+                //已投票或已过期，显示投票结果
                 //添加进度条显示
                 var number = number1+ number2+ number3+ number4+ number5+ number6;
                 var n1 = number1/number*100;
@@ -172,6 +115,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                     '</div>';
 
 
+                themetxt ='<p>'+ issuePerson+'发布于'+issueTime+'  到期时间'+expireTime+'</p>';
 
                 $("#voteAccordion").append(txt);
                 $("#voteOne").attr("id", "vote" + voteId);
@@ -179,6 +123,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                 $("#collapseVoteOne").attr("id", "collapseVote" + voteId);
                 $("#voteA").attr("href", "#collapseVote" + voteId);
                 $("#voteA").attr("aria-controls", "#collapse" + voteId);
+                $("#vote"+voteId+" h4").append(themetxt);
                 $("#voteA").text(theme);
                 $("#voteA").attr("id","voteA"+voteId);
                 //空白项不显示
@@ -199,7 +144,73 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
                     }
                 }
             }
-            $("#panelBody").attr("id","panelBody"+voteId);
+
+        if(hasVoted == false ){
+                //未过期未投票，显示投票页面
+                //并显示[未投票]
+
+                if(multipleChoice == 1){
+                    //多选
+                    txt = txt +
+                        '<form action="/interactingClass/Vote" method="post">'+
+                        '<input type="checkbox" value="option1" name="check1">'+option1+
+                        '<input type="checkbox" value="option2" name="check2">'+option2+
+                        '<input type="checkbox" value="option3" name="check3">'+option3+
+                        '<input type="checkbox" value="option4" name="check4">'+option4+
+                        '<input type="checkbox" value="option5" name="check5">'+option5+
+                        '<input type="checkbox" value="option6" name="check6">'+option6+
+                        '<input type="hidden" name="voteId" value=' +voteId+'>'+
+                        '<input type="hidden" name="multipleChoice" value=' +multipleChoice+'>'+
+                        '<button type="submit">参与投票</button>'+
+                        '</form>'+
+                        '</div>'+
+                        '</div>';
+                }else{
+                    //单选
+                    txt = txt +
+                        '<form action="/interactingClass/Vote" method="post">'+
+                        '<input type="radio" value="option1" name="vote">'+option1+
+                        '<input type="radio" value="option2" name="vote">'+option2+
+                        '<input type="radio" value="option3" name="vote">'+option3+
+                        '<input type="radio" value="option4" name="vote">'+option4+
+                        '<input type="radio" value="option5" name="vote">'+option5+
+                        '<input type="radio" value="option6" name="vote">'+option6+
+                        '<input type="hidden" name="voteId" value=' +voteId+ '> '+
+                        '<input type="hidden" name="multipleChoice" value=' +multipleChoice+'>'+
+                        '<button type="submit">参与投票</button>'+
+                        '</form>'+
+                        '</div>'+
+                        '</div>';
+
+                }
+            themetxt = '<p> <strong>[未投票]</strong>'+issuePerson+'发布于'+issueTime+'    到期时间'+expireTime+'</p>';
+                $("#voteAccordion").append(txt);
+
+                $("#voteOne").attr("id", "vote"+voteId);
+                $("#collapseVoteOne").attr("aria-labelledby", "heading"+voteId);
+                $("#collapseVoteOne").attr("id", "collapseVote"+voteId);
+                $("#voteA").attr("href", "#collapseVote"+voteId);
+                $("#voteA").attr("aria-controls", "#collapse"+voteId);
+                $("#vote"+voteId+" h4").append(themetxt);
+                $("#voteA").text(theme);
+                $("#voteA").attr("id","voteA"+voteId);
+                //空白项不显示
+                                    if(option6 == ""){
+                                        $("#panelBody input:eq(5)").remove();
+                                    }
+                                    if(option5 == ""){
+                                        $("#panelBody input:eq(4)").remove();
+                                    }
+                                    if(option4 == ""){
+                                        $("#panelBody input:eq(3)").remove();
+                                    }
+                                    if(option3 == "") {
+                                        $("#panelBody input:eq(2)").remove();
+                                    }
+
+            }
+
+        $("#panelBody").attr("id","panelBody"+voteId);
         });
     });
 
