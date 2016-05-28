@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ include javax.util.* %>
+
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
@@ -36,29 +36,8 @@
                     </li>
                 </ul>
 
-        <%!int  pagen= 2;%>
-    <% pagen = Interger.parseInt(request.getParameter("page"));
-    out.println(page);
-    if(pagen == 1){%>
-    <script>
-    $("li:eq(1)").attr("class","active");
-    </script>
-        <%   }
-    if(pagen == 2){
-    %>
-    <script>
-    $("li:eq(2)").attr("class","active");
-    </script>
-        <%
-    }
-    if(pagen == 3){
-    %>
-    <script>
-    $("li:eq(3)").attr("class","active");
-    </script>
-        <%
-    }
-%>
+       
+    
 
 
     <div class="tab-content">
@@ -250,6 +229,23 @@
 <script src="bootstrap/js/bootstrap.js"></script>
 <script src="myjs/loadVotePage.js"></script>
 <script src="myjs/loadWorkPage.js"></script>
-
+ <%int  pagen= 2;
+     if(request.getParameter("page") == null){
+    	pagen = 2;
+    }else{
+    	pagen = Integer.parseInt(request.getParameter("page"));
+    }
+    
+    	    
+    if(pagen == 1){
+    	out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');</script>");
+    }
+    if(pagen == 2){
+    	out.println("<script>$('li:eq(1)').addClass('active');</script>");
+    }
+    if(pagen == 3){
+        out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');</script>");
+    }
+    %>
 </body>
 </html>
