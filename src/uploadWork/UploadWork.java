@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -63,6 +64,10 @@ public class UploadWork extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//session
+		HttpSession session = request.getSession();
+		String name = session.getAttribute("username").toString();
+		
 		// 检查我们有一个文件上传请求
 	      isMultipart = ServletFileUpload.isMultipartContent(request);
 	      response.setContentType("text/html;charset=utf-8");
@@ -177,7 +182,7 @@ public class UploadWork extends HttpServlet {
           //写入数据库
           System.out.println(filePath);
           sqlInsert = "INSERT INTO homework(file_name, href, owner, time, taskNum)"+
-          " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+"xiaomu\",\""+uploadTime+"\",\""+taskNum+"\")";
+          " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+name+"\",\""+uploadTime+"\",\""+taskNum+"\")";
      
           /*
            * \会被转义，但是'\'也是正则表达式中的转义字符（replaceAll 的参数就是正则表达式），

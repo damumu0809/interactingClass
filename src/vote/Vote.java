@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import database.DB;
 /**
@@ -43,6 +44,9 @@ public class Vote extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		java.io.PrintWriter out = response.getWriter( );	
+		//session
+		HttpSession session = request.getSession();
+		String name = session.getAttribute("username").toString();
 		
 		//连接数据库
 		DB db = new DB();
@@ -74,7 +78,7 @@ public class Vote extends HttpServlet {
     				System.out.println(sql1);
     					db.query1(sql1);
     					
-    					String sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId+",\""+time+"\",\"xiaomu\")";
+    					String sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId+",\""+time+"\",\""+name+"\")";
     					System.out.println(sql2);
     					db.query1(sql2);
     				}else{
@@ -99,7 +103,7 @@ public class Vote extends HttpServlet {
     				  			System.out.println(sql1);
     							db.query1(sql1);
     							
-    							sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId[j]+",\""+time+"\",\"xiaomu\")";
+    							sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId[j]+",\""+time+"\",\""+name+"\")";
     							System.out.println(sql2);
     							db.query1(sql2);
     				  		}

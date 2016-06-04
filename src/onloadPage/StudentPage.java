@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +51,9 @@ public class StudentPage extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );		
 		
+		//session
+				HttpSession session = request.getSession();
+				String username = session.getAttribute("username").toString();
 		
 		DB db = new DB();
 		String sqlSelect = "SELECT * FROM issueWork order by id desc";
@@ -89,7 +93,7 @@ public class StudentPage extends HttpServlet {
 					//过期  
 					hasExpired = true;
 					//查询是否提交该次作业
-					String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner='xiaomu'";
+					String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner=\""+username+"\"";
 					ResultSet rs2 = db.query2(sql);
 					if(rs2.next()){
 						//已提交
@@ -103,7 +107,7 @@ public class StudentPage extends HttpServlet {
 				}else{
 					hasExpired = false;
 					//查询是否提交该次作业
-					String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner='xiaomu'";
+					String sql = "SELECT * FROM homework WHERE taskNum=\""+taskNum+"\" AND owner=\""+username+"\"";
 					
 					ResultSet rs2 = db.query2(sql);
 					if(rs2.next()){

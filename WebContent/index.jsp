@@ -1,18 +1,77 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="mycss/index.css">
-    
-    <meta charset="UTF-8">
-    <title>移动互动课堂</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
+<%@page contentType="text/html; charset=UTF-8" language="java"
+    import="java.text.*,org.json.JSONObject.*,java.util.ArrayList,java.io.PrintWriter"
+    import="java.util.*,java.sql.*,java.io.IOException"
+    import="database.*,java.sql.ResultSet"%>
+<%@ include file="frame_css.jsp"%>
+<title>移动互动课堂</title>
 </head>
+<%
+    //session = request.getSession();
+    if(session.getAttribute("username")==null){
+        out.println("<script>alert('请先登录！');window.location.href='login.jsp'</script>");
+    }
+    
+%>
+<body onload="menuInit();">
+	<!-- Header Starts Here -->
+<div class="header" id="home">
+	<div class="container">
+		<!-- logo部分 -->
+		<span class="menu"></span>
+		<div class="cleare"></div>
+		<div class="navigation">
+			<ul id="menu_ul" class="navig">
+			<!-- 导航部分 -->
+				<li><a href="#"  class="active">首页</a></li>
+				<li><a href="#" class="scroll">互动课堂</a></li>
+			</ul>			
+		</div>
+		<div class="clearfix"></div>			
+	</div>
+</div>
+<!-- Header Ends Here -->
+<!-- Banner Starts Here -->
+<div class="banner">
+<!-- 在css的banner类中注释了背景图片 -->
+		<!-- BEGIN CONTAINER -->
+	<div class="container">
+	<div class="row">
+		<div class="col-md-9" > <p>空白页面</p>
+		</div>
+	</div>
 
-<body>
+<!-- END CONTAINER -->
+		<div class="aarow">
+			<a href="#work" class="scroll"><img src="images/arw.png" alt=""></a>
+		</div>
+	</div>
+</div>
+<!-- Banner Ends Here -->
 
-<div class="container-fluid">
+<!-- Work Starts Here -->
+<%
+                    String identity =null;
+           if(session.getAttribute("identity")!=null){
+        	   identity= session.getAttribute("identity").toString();
+        	   System.out.println("===================");
+        	   System.out.println(identity);
+               if(identity.equals("学生")){
+            	   out.println("<script>var flag=1;function page(){if(flag==1){studentPage();} flag=0;}</script>");
+               }
+               if(identity.equals("教师")){
+            	   out.println("<script>var flag=1;function page(){if(flag==1){teacherPage();} flag=0;}</script>");
+               }
+           }
+%>
+<div class="services">
+	<div class="container" id="work">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-tabs" role="tablist">
@@ -29,7 +88,7 @@
                         </a>
                     </li>
                     <li role="presentation" >
-                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab">
+                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="page();">
                             <span class="glyphicon glyphicon-edit" aria-hidden="false"></span>
                             作业
                         </a>
@@ -210,25 +269,47 @@
 
 
                     <!-- 签到模块-->
-                    <div role="tabpanel" class="tab-pane " id="signin">
+                    <div role="tabpanel" class="tab-pane active" id="signin">
+               
                     </div>
                     
 
 		            <!-- 作业模块 -->
-                    <div role="tabpanel" class="tab-pane" id="homework">
-        	        <button id="student">学生页面</button>
-                    <button id="teacher">老师页面</button>
+            <div role="tabpanel" class="tab-pane" id="homework" >        
+           
+        	        
                     </div>
                 </div>
             </div>
         </div>
 </div>
+</div>
+<div class="footer">
 
+	<div class="container">
+		<p class="copyright">Copyright &copy; 2014.www.html5code.net All rights reserved.</p>
+		<ul class="social-list">
+			<li><i class="sa"></i></li>
+			<li><i class="sb"></i></li>
+			<li><i class="sc"></i></li>
+			<li><i class="sd"></i></li>
+			<li><i class="se"></i></li>
+			<li><i class="sf"></i></li>
+			<li><i class="sg"></i></li>
+			<li><i class="sh"></i></li>
+			<li><i class="si"></i></li>
+		</ul>
+				<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
-<script src="bootstrap/js/jquery-1.12.2.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="myjs/loadVotePage.js"></script>
-<script src="myjs/loadWorkPage.js"></script>
+	</div>
+</div>
+<%@ include file="frame_js.jsp"%>
+<!-- END PAGE LEVEL SCRIPTS -->
+<script src="js/frame.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/loadVotePage.js"></script>
+<script src="js/loadWorkPage.js"></script>
  <%int  pagen= 2;
      if(request.getParameter("page") == null){
     	pagen = 2;
@@ -238,14 +319,14 @@
     
     	    
     if(pagen == 1){
-    	out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');</script>");
+    	out.println("<script>$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');$('.tab-pane:eq(0)').addClass('active');</script>");
     }
-    if(pagen == 2){
-    	out.println("<script>$('li:eq(1)').addClass('active');</script>");
-    }
+    //if(pagen == 2){
+    	//out.println("<script>$('li:eq(1)').addClass('active');</script>");
+    //}
     if(pagen == 3){
-        out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');</script>");
+        out.println("<script>$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');$('.tab-pane:eq(2)').addClass('active');</script>");
     }
-    %>
+ %>
 </body>
 </html>

@@ -1,0 +1,92 @@
+.login_box{
+	margin-top:125px;
+}
+.login_footer{
+	margin-top:25px;
+	font-size:12px;
+	float:right;
+}
+.input_header{
+	display: table-cell;
+	height: 30px;
+	width:88px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	vertical-align: middle;
+	font-size: 0.85em;
+	color: #2c2b2a;
+	font-weight: 600;
+}
+.login_back{
+	background: url("../images/background2.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+.s{
+	font-weight:lighter;
+	color:red;
+}
+.v{
+	color:cccccc;
+	font-size:12px;
+}
+.clr{
+	height:20px;
+	color:AAAAAA;
+	font-size:12px;
+	visibility:hidden;
+}
+.ok{
+	background:url("../images/check.jpg");
+	width:17px;
+	height:16px;
+	visibility:hidden;
+	display:none;
+}
+.showPw{
+	float:right;
+	display:inline-table;
+}
+#strength{
+	color:AAAAAA;
+	font-size:12px;
+	display:none;
+}
+.showStren{
+	width:135px;
+	display:inline;
+	color:white;
+	font-size:12px;
+}
+.ceil{
+	border:0.5px solid #FFFFFF;
+	background-color:DDDDDD;
+}
+.text-center{
+	text-align:center;
+}
+.getback_box{
+	border:1px solid #e6e6e6;
+	border-radius:5px !important; 
+	box-shadow:0 0 2px #888888;
+	margin-top:75px;
+	padding:75px 25px 25px 25px;
+}
+.subbtn{
+	color: #fff;
+	background-color: #c5996c;
+	padding: 10px 20px;
+	text-decoration: none;
+	display: inline-block;
+}
+.gback_header{
+	margin-top:45px;
+}
+.gback_header p{
+	font-size: 1.2em;
+	color: #c59a6d;
+	font-weight: 700;
+	text-align:center;
+	margin:0;
+}

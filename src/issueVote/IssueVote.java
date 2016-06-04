@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import database.DB;
 /**
@@ -41,6 +42,9 @@ public class IssueVote extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
+		//session
+		HttpSession session = request.getSession();
+		String name = session.getAttribute("username").toString();
 		//中文乱码
 		request. setCharacterEncoding("utf-8");
 		//获取投票主题
@@ -85,7 +89,7 @@ public class IssueVote extends HttpServlet {
 		//写入数据库
 		DB db = new DB();
 		String sqlInsert = "INSERT INTO vote(theme, issuePerson, issueTime, expireTime, option1, number1, option2, number2, option3, number3, option4, number4, option5, number5, option6, number6, multipleChoice) "
-				+ "VALUES(\""+theme+"\", \"teacher\", \""+issueTime+"\", \""+expireTime+"\", \""+option1+"\", 0, \""+option2+"\", 0, \""+option3+"\", 0, \""+option4+"\", 0, \""+option5+"\", 0, \""+option6+"\", 0, "+multipleChoice+")";
+				+ "VALUES(\""+theme+"\", \""+name+"\", \""+issueTime+"\", \""+expireTime+"\", \""+option1+"\", 0, \""+option2+"\", 0, \""+option3+"\", 0, \""+option4+"\", 0, \""+option5+"\", 0, \""+option6+"\", 0, "+multipleChoice+")";
 	System.out.println(sqlInsert);
 		db.query1(sqlInsert);
 	System.out.println("success");

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +51,12 @@ public class VotePage extends HttpServlet {
 		
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );	
+		
+		//session
+		String name = null;
+		HttpSession session = request.getSession();
+		if(session.getAttribute("username")!= null)
+			name = session.getAttribute("username").toString();
 		
 		//读取数据库投票记录
 		DB db = new DB();
@@ -137,7 +144,7 @@ public class VotePage extends HttpServlet {
 				//未过期
 					System.out.println("未过期");
 				//查询是否已投票
-				sql2 = "SELECT * FROM voteRecord WHERE voteId="+voteId+" AND person=\"xiaomu\"";
+				sql2 = "SELECT * FROM voteRecord WHERE voteId="+voteId+" AND person='"+name+"'";
 			System.out.println(sql2);
 				ResultSet rs2 = db.query2(sql2);
 				
@@ -193,7 +200,10 @@ public class VotePage extends HttpServlet {
 			out.println(message.toString());
 			//在前端根据multipleChoice来加载单选还是多选框
 		
-		}catch (SQLException | JSONException e) {
+		}catch ( JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+				} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

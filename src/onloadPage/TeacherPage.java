@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +51,9 @@ public class TeacherPage extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
+		//session
+		HttpSession session = request.getSession();
+		String username = session.getAttribute("username").toString();
 		
         DB db = new DB();
 		String sqlSelect = "SELECT * FROM issueWork order by id desc";
