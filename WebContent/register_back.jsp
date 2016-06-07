@@ -34,7 +34,7 @@
 			java.util.Date rTime = new java.util.Date();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
 			String registerTime = df.format(rTime);			
-			sql = "insert into userInfo(username,password,nickname,sex,mailaddr,identity,register_time,loginstatus) values('"
+			sql = "insert into userinfo(username,password,nickname,sex,mailaddr,identity,register_time,loginstatus) values('"
 					+ userName + "',md5('"+passWord+"'),'"+nickName+"','"+Sex+"','"+mailAddr+"','"+userPosition+"','"+registerTime+"','0')";
 			query_db.query1(sql);
 %>
