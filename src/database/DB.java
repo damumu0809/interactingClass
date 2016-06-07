@@ -9,7 +9,9 @@ import java.sql.Statement;
 public class DB {
 	// JDBC 驱动器名称和数据库的 URL
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";  
-    static final String DB_URL="jdbc:mysql://localhost/w_xm01?charset=utf-8";
+    //static final String DB_URL="jdbc:mysql://localhost/w_xm01?charset=utf-8";
+    static final String DB_URL="jdbc:mysql://localhost/interacting?useUnicode=true&characterEncoding=UTF-8";
+    
 
     //  数据库的凭据
     static final String USER = "root";

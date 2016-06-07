@@ -36,6 +36,7 @@
 			String registerTime = df.format(rTime);			
 			sql = "insert into userinfo(username,password,nickname,sex,mailaddr,identity,register_time,loginstatus) values('"
 					+ userName + "',md5('"+passWord+"'),'"+nickName+"','"+Sex+"','"+mailAddr+"','"+userPosition+"','"+registerTime+"','0')";
+			System.out.println("页面传递过来的identity：" + userPosition);
 			query_db.query1(sql);
 %>
 			<p>恭喜您!注册成功</p>
