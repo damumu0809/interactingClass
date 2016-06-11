@@ -21,7 +21,7 @@ System.out.println("构造出来的sql语句是："+sql);
 System.out.println(Identity);
 		
 			//通过用户身份设置菜单
-			sql = "select * from menu where identity='"+Identity+"' order by id";
+			sql = "select * from menu where identity='"+Identity+"'";
 			rs = query_db.query2(sql);
 System.out.println("构造出来的sql语句是："+sql);		
 			while (rs.next()) {
@@ -33,9 +33,9 @@ System.out.println("构造出来的sql语句是："+sql);
 				list.add(rs.getString("A_CLASS"));
 				jsonList.add(list);
 			}
-		}
 
 		
+		}
 System.out.println("数据库关闭了！！！");
 	} catch (SQLException sqlexception) {
 		sqlexception.printStackTrace();

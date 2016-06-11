@@ -12,8 +12,30 @@
   <context-param>
     <description>Location to store uploaded file</description>
     <param-name>file-upload</param-name>
-    <param-value>
-         E:\apache-tomcat-8.0.33-windows-x64\apache-tomcat-8.0.33\webapps\data\
-     </param-value>
+    <param-value>E:\apache-tomcat-8.0.33-windows-x64\apache-tomcat-8.0.33\webapps\data\</param-value>
   </context-param>
+  <servlet>
+    <servlet-name>SmartUploadServlet</servlet-name>
+    <servlet-class>com.upload.SmartUploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SmartDownloadServlet</servlet-name>
+    <servlet-class>com.upload.SmartDownloadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BatchDownloadServlet</servlet-name>
+    <servlet-class>com.upload.BatchDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SmartUploadServlet</servlet-name>
+    <url-pattern>/smartUploadServlet.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SmartDownloadServlet</servlet-name>
+    <url-pattern>/smartDownloadServlet.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BatchDownloadServlet</servlet-name>
+    <url-pattern>/batchDownloadServlet.do</url-pattern>
+  </servlet-mapping>
 </web-app>

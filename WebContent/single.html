@@ -2,41 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Blog</title>
+<title>Single</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.0.min.js"></script>
 <!-- Custom Theme files -->
 <link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
-
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Google Fonts -->
 <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <!-- Script Starts Here -->
-<script src="js/responsiveslides.min.js"></script>
-	 <script>
-	    // You can also use "$(window).load(function() {"
-	    $(function () {
-	      // Slideshow 4
-	      $("#slider4").responsiveSlides({
-	        auto: true,
-	        pager: true,
-	        nav: true,
-	        speed: 500,
-	        namespace: "callbacks",
-	        before: function () {
-	          $('.events').append("<li>before event fired.</li>");
-	        },
-	        after: function () {
-	          $('.events').append("<li>after event fired.</li>");
-	        }
-	      });
-	
-	    });
-	  </script>
 <!----//End-slider-script---->
+<!----Calender -------->
+  <link rel="stylesheet" href="css/clndr.css" type="text/css" />
+  <script src="js/underscore-min.js"></script>
+  <script src= "js/moment-2.2.1.js"></script>
+  <script src="js/clndr.js"></script>
+  <script src="js/site.js"></script>
+<!----End Calender -------->
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
@@ -46,14 +31,6 @@ jQuery(document).ready(function($) {
 	});
 });
 </script>
-<!----Calender -------->
-  <link rel="stylesheet" href="css/clndr.css" type="text/css" />
-  <script src="js/underscore-min.js"></script>
-  <script src= "js/moment-2.2.1.js"></script>
-  <script src="js/clndr.js"></script>
-  <script src="js/site.js"></script>
-<!----End Calender -------->
-
 </head>
 <body>
 <!-- Header Starts Here --->
@@ -73,51 +50,13 @@ jQuery(document).ready(function($) {
 				</script>
 			<div class="navigation">
 				<ul class="navig">
-					<li><a href="index.jsp">Home</a></li>
-					<li><a href="index.html"  >About</a></li>
-					<li><a href="index.html"  >Services</a></li>
-					<li><a href="index.html"  >WORKS </a></li>
-					<li><a href="index.html"  >CLIENTS</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="index.html" class="scroll">About</a></li>
+					<li><a href="index.html" class="scroll">Services</a></li>
+					<li><a href="index.html" class="scroll">WORKS </a></li>
+					<li><a href="index.html" class="scroll">CLIENTS</a></li>
 					<li><a href="blog.html" class="active">BLOG</a></li>
-					<li><button data-toggle="modal" data-target="#myModal"  >写博客</button></li>
-
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabelVote">写博客</h4>
-								</div>
-
-								<form class="form-horizontal"  action="/interactingClass/IssueBlog" method="post" enctype="multipart/form-data">
-									<div class="modal-body">
-										<div class="form-group">
-											<div class="col-sm-offset-1 col-sm-9">
-												<textarea class="form-control" rows="1" placeholder="请输入博客主题..." name="topic"></textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-1 col-sm-9">
-												<textarea class="form-control" rows="4" placeholder="请输入文章内容..." name="text"></textarea>
-											</div>
-										</div>
-										<!-- 添加图片、音频、视频-->
-										<div class="form-group">
-											<div class="col-sm-offset-1 col-sm-9">
-												<input type="file" multiple="multiple" name="picture"/>添加图片
-												<input type="file" multiple="multiple" name="video"/>添加视频
-												<input type="file" multiple="multiple" name="music"/>添加音频
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button class="btn btn-primary btn-sm " type="submit" data-toggle="modal" data-target="#myModal" id="issue">发布</button>
-									</div>
-								</form>
-
-							</div>
-						</div>
-					</div>
+					<li><a href="index.html" class="scroll">CONTACT</a></li>	
 				</ul>
 			
 			</div>
@@ -139,7 +78,7 @@ jQuery(document).ready(function($) {
 		<!-- Post One Start Here --->
 				<img src="images/blog.jpg" alt="">
 				<!-- Blog Description -->
-					<div class="blog-desc">
+					<div class="blog-desc single-desc">
 						<div class="desc-left">
 							<i class="des-p"></i>
 							<p>31</p>
@@ -154,119 +93,141 @@ jQuery(document).ready(function($) {
 							</ul>
 							<span class="blog-line"></span>
 							<p class="head-sub">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque. Phasellus blandit arcu id ante feugiat</p>
-							<div class="read-more">
-								<a href="single.html">Read More</a>
+							<div class="social-status">
+								<ul class="status-list">
+									<li><span class="facebook"></span><i class="count">105</i></li>
+									<li><span class="twitter"></span><i class="count">98</i></li>
+									<li><span class="googleplus"></span><i class="count">56</i></li>
+								</ul>
 							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				<!-- Blog Description -->
-		<!-- Post One End Here --->
-		<!-- Post Two starts Here --->
-				<!-- Slider Starts Here --->
-					<div  id="top" class="callbacks_container blog-slide-n">
-				      <ul class="rslides " id="slider4">
-				        <li>
-				        	<img src="images/blog2.jpg" alt="">
-				        </li>
-				        <li>
-				        	<img src="images/blog3.jpg" alt="">
-				        </li>
-				        <li>
-				        	<img src="images/blog.jpg" alt="">
-				        </li>
-				        <li>
-				        	<img src="images/blog2.jpg" alt="">
-				        </li>
-				        <li>
-				        	<img src="images/blog3.jpg" alt="">
-				        </li>
-				      </ul>
-				    </div>
-				    <div class="clearfix"></div>
-					<!-- Blog Description -->
-					<div class="blog-desc">
-						<div class="desc-left">
-							<i class="des-q"></i>
-							<p>30</p>
-							<h4>MAR</h4>
-						</div>
-						<div class="desc-right">
-							<h3>Blog Post With Image Gallery</h3>
-							<ul class="blog-list">
-								<li><span class="person"></span> <a href="#">Mike</a></li>
-								<li><span class="fol"></span> <a href="#">Web design</a></li>
-								<li><span class="cmt"></span> <a href="#">0 Comment</a></li>
+							<div class="blog-para">
+								<p>P  ellentesque rhoncus est tincidunt, facilisis augue a, dictum metus. Aenean ut enim ut est          lacinia laoreet id sed purus. Phasellus ut pharetra felis, sed accumsan leo. In at neque posuere tellus et, hendrerit eros. Maecenas ac dictum est, et egestas mi. Suspendisse massa massa, auctor id fringilla in, laoreet nec mauris.</p>
+								<p>Fusce non malesuada urna. Suspendisse ac erat ut orci faucibus porta. Phasellus in libero id mi condimentum sollicitudin nec a ante. Ut dignissim iaculis sem sit amet vulputate. Quisque sed lorem odio. Vestibulum aliquet, ante ac tempor congue, libero enim vehicula dui, a viverra ligula nibh ut mi.</p>
+								<p>Donec porttitor velit purus, eget blandit sem posuere vitae. Vestibulum lobortis non enim vitae porttitor. Nulla eros tortor, auctor ac eleifend tristique, tincidunt eu ligula. Vestibulum faucibus magna non dui tristique, vulputate vulputate neque dignissim. Donec euismod sem a consectetur tempus.</p>
+								<div class="blog-quote">
+									<div class="blog-quote-bor">
+										<h3>Some great quote that you love and want to share as a single post.</h3>
+										<span class="blog-line"></span>
+										<small>Quote Author</small>
+									</div>
+								</div>
+								<p>Integer rutrum, turpis ut hendrerit semper, sapien quam imperdiet felis, id lacinia nunc ipsum sed neque. Pellentesque a rhoncus massa. Mauris blandit lectus risus, non facilisis neque laoreet in. Sed vel enim rutrum, feugiat nisl vel, hendrerit justo. Sed quis turpis id eros malesuada sollicitudin a vitae lorem. Donec tincidunt at quam nec ultrices.</p>
+							</div>
+							<ul class="tags_links">
+								<li><a href="#">Design</a></li>
+								<li><a href="#">Branding</a></li>
+								<li><a href="#">Art</a></li>
 							</ul>
-							<span class="blog-line"></span>
-							<p class="head-sub">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque. Phasellus blandit arcu id ante feugiat</p>
-							<div class="read-more">
-								<a href="single.html">Read More</a>
+							<div class="blog-about">
+								<i class="autor-pic"></i>
+								<div class="blog-auth-right">
+									<h3 class="top-head caty">ABOUT DIDI</h3>
+									<span class="blog-line thik"></span>
+									<p class="head-sub bl-x">Sed sit amet molestie tellus. Integer dictum ultrices dolor, at accumsan eros mollis id. Vivamus mollis purus vehicula eros eleifend ornare. Quisque dapibus dui sed est pretium, ut varius massa sagittis.</p>
+									<div class="auth-bot">
+										<ul class="t-social bot-x">
+											<li><i class="fa"></i></li>
+											<li><i class="fb"></i></li>
+											<li><i class="fc"></i></li>
+											<li><i class="fd"></i></li>
+											<li><i class="fe"></i></li>
+										</ul>
+										<p class="bot-y"><a href="#">ALL FROM DIDI ></a></p>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
 							</div>
+							<!-- Related Post -->
+								<div class="related-post">
+									<h3 class="top-head caty">RELATED POSTS</h3>
+									<span class="blog-line thik thiky"></span>
+									<div class="row related-row">
+										<div class="col-md-5 related-column">
+											<img src="images/blog-rel1.jpg" alt="">
+											<h3 class="rel-hed">Some Similar Post</h3>
+											<span class="blog-line thik"></span>
+											<p class="head-sub bl-x">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque</p>
+											<div class="read-more">
+												<a href="#">Read More</a>
+											</div>
+										</div>
+										<div class="col-md-5 related-column">
+											<img src="images/blog-rel2.jpg" alt="">
+											<h3 class="rel-hed">Some Similar Post</h3>
+											<span class="blog-line thik"></span>
+											<p class="head-sub bl-x">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque</p>
+											<div class="read-more">
+												<a href="#">Read More</a>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							<!-- Related Post -->
+							<!-- Comments -->
+								<div class="comments">
+									<h3 class="top-head caty">2 comments</h3>
+									<span class="blog-line thik thiky"></span>
+									<div class="comments-top">
+										<i class="comment-profile"><img src="images/cmt-1.jpg"  alt=""/></i>
+										<div class="comment-right">
+											<p><a href="#">MIKE</a>&nbsp;&nbsp;On April 14, 2014, 18:01</p>
+											<p class="cmt-mat">Cool!</p>
+											<div class="reply">
+												<a href="#">Reply</a>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="comments-top">
+										<i class="comment-profile"><img src="images/cmt-2.jpg"  alt=""/></i>
+										<div class="comment-right">
+											<p><a href="#">DIDI</a>&nbsp;&nbsp;  On April 14, 2014, 17:59 @NELLY ATANASOFF</p>
+											<p class="cmt-mat">Fusce id mauris ut mauris dictum congue vel nec diam. Sed vel risus velit. Nulla magna risus, tempus sit amet metus at, malesuada bibendum urna. Nam vitae leo auctor, auctor odio nec, auctor metus. Aenean turpis tellus, vehicula ut odio eu, blandit congue enim. </p>
+											<div class="reply">
+												<a href="#">Reply</a>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="comments-top">
+										<i class="comment-profile"><img src="images/cmt-1.jpg"  alt=""/></i>
+										<div class="comment-right">
+											<p><a href="#">NELLY ATANASOFF </a>&nbsp;&nbsp; On April 14, 2014, 17:53</p>
+											<p class="cmt-mat">Fusce id mauris ut mauris dictum congue vel nec diam. Sed vel risus velit. Nulla magna risus, tempus sit amet metus at, malesuada bibendum urna. Nam vitae leo auctor, auctor odio nec, auctor metus. Aenean turpis tellus, vehicula ut odio eu, blandit congue enim. </p>
+											<div class="reply">
+												<a href="#">Reply</a>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+							<!-- Comments -->
+							<!-- Leave A Reply -->
+								<div class="reply">
+									<h3 class="top-head caty">LEAVE A REPLY</h3>
+									<span class="blog-line thik thiky"></span>
+									<p class="head-sub">Duis vitae velit mollis, congue nisi dignissim, pellentesque lorem</p>
+									<div class="reply-box">
+										<div class="reply-text">
+											<input type="text" placeholder="YOUR NAME" required/>
+											<input type="text" placeholder="YOUR EMAIL" required />
+										</div>
+										<div class="reply-text">
+											<textarea placeholder="THE REPLY" required ></textarea>
+										</div>
+										<div class="reply-text">
+											<input type="submit" value="LEAVE THE REPLY" />
+										</div>
+									</div>
+								</div>
+							<!-- Leave A Reply -->
 						</div>
 						<div class="clearfix"></div>
 					</div>
 				<!-- Blog Description -->
-			<!-- Post Two End Here --->	
-			<!-- Post three Starts Here -->
-			<audio controls>
-				<source src="fonts/horse.ogg" type="audio/ogg">
-  				<source src="fonts/horse.mp3" type="audio/mpeg">
-			</audio>
-			<!-- Blog Description -->
-					<div class="blog-desc">
-						<div class="desc-left">
-							<i class="des-r"></i>
-							<p>30</p>
-							<h4>MAR</h4>
-						</div>
-						<div class="desc-right">
-							<h3>Music Post</h3>
-							<ul class="blog-list">
-								<li><span class="person"></span> <a href="#">Mike</a></li>
-								<li><span class="fol"></span> <a href="#">Web design</a></li>
-								<li><span class="cmt"></span> <a href="#">0 Comment</a></li>
-							</ul>
-							<span class="blog-line"></span>
-							<p class="head-sub">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque. Phasellus blandit arcu id ante feugiat</p>
-							<div class="read-more">
-								<a href="single.html">Read More</a>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				<!-- Blog Description -->
-			<!-- Post Three End Here --->	
-			<!-- Post four Starts Here -->
-			<div class="video-f">
-				<iframe src="//player.vimeo.com/video/13103568" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-			</div>
-					 <div class="clearfix"></div>
-					<!-- Blog Description -->
-					<div class="blog-desc">
-						<div class="desc-left">
-							<i class="des-s"></i>
-							<p>30</p>
-							<h4>MAR</h4>
-						</div>
-						<div class="desc-right">
-							<h3>Video Blog Post</h3>
-							<ul class="blog-list">
-								<li><span class="person"></span> <a href="#">Mike</a></li>
-								<li><span class="fol"></span> <a href="#">Web design</a></li>
-								<li><span class="cmt"></span> <a href="#">0 Comment</a></li>
-							</ul>
-							<span class="blog-line"></span>
-							<p class="head-sub">Donec quis vestibulum nisl, a bibendum velit. Proin cursus mauris non malesuada euismod. In vitae accumsan neque. Phasellus blandit arcu id ante feugiat</p>
-							<div class="read-more">
-								<a href="single.html">Read More</a>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				<!-- Blog Description -->
-			<!-- Post four Ends Here -->
-			</div>
+		</div>
 			<div class="col-md-4 side-bar">
 				<div class="search-bar">
 					<span><input type="text" placeholder="SEARCH.." required  /><input type="submit" value="" /></span>
@@ -346,16 +307,8 @@ jQuery(document).ready(function($) {
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="pagnations">
-			<ul class="page-list">
-				<li><a href="#"><i></i></a></li>
-				<li class="num">1 of 95</li>
-				<li class="nme"><a href="#"><i class="right"></i></a></li>
-			</ul>
-		</div>
 	</div>
 </div>
-<!-- Blog Ends Here --->
 <!-- Find Us Starts Here -->
 <div class="find">
 	<div class="container">
@@ -406,17 +359,10 @@ jQuery(document).ready(function($) {
 			<li><i class="sh"></i></li>
 			<li><i class="si"></i></li>
 		</ul>
-				<a href="#home" class="scroll"  id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-				<a></a>
+				<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 
 	</div>
 </div>
-<script src="js/frame.js"></script>
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/interclass.js" type="text/javascript"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/loadVotePage.js"></script>
-<script src="js/loadWorkPage.js"></script>
 
 </body>
 </html>

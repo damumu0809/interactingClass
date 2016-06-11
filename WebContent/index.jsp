@@ -19,7 +19,7 @@
     }
     
 %>
-<body onload="menuInit();">
+<body style="MARGIN: 0px" scroll=no onResize=javascript:parent.carnoc.location.reload() onload="menuInit();">
 	<!-- Header Starts Here -->
 <div class="header" id="home">
 	<div class="container">
@@ -41,17 +41,43 @@
 <div class="banner">
 <!-- 在css的banner类中注释了背景图片 -->
 		<!-- BEGIN CONTAINER -->
-	<div class="container">
-	<div class="row">
-		<div class="col-md-9" > <p>空白页面</p>
-		</div>
+<div class="container">
+	<div class="row" height="500px">
+		<table border="0" cellPadding="0" cellSpacing="0" height="100%" width="100%">
+   		 	<tr>
+        	<td align="middle" vAlign="center" noWrap id="frmTitle">
+            	<!--注意这里的ID，它返回给上面那段javascript的-->
+           	 	<!--以下是左边的FRAME,你只要做一个宽为180PX的页面嵌套进去就可以了。当然你也可以修改这句里WIDTH的值为你叶子的宽度-->
+            <iframe frameBorder="0" id="carnoc" name="carnoc" scrolling=auto src="powerpoint.jsp" style="HEIGHT: 100%; VISIBILITY: inherit; width: 910px; Z-INDEX: 2">
+            </iframe>
+       	 	</td>
+        		<!--同志们请注意下面这个TD，它的颜色就是中间跑来跑去分栏部分的颜色，你可以在这里将颜色改成与你页面融洽的颜色-->
+        	<td width="46" bgcolor="#364150" style="WIDTH: 9pt">
+            	<!--哈哈，看到了吧，中间的那个跑来跑去的栏实际上去一个TABLE哦！TABle的宽度就是那条栏的宽度-->
+            	<table width="9" height="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="200" style="HEIGHT: 100%" onClick="switchSysBar()"><!--这里调用上面的switchSysBar过程-->
+                        <font style="FONT-SIZE: 9pt; CURSOR: default; COLOR: #ffffff">
+                            <!--这里你可以把3改成1或者其他数字来看看就发现了是形状问题了-->
+                        	<span class="navPoint" id="switchPoint" title="关闭/打开左栏">4</span>屏幕切换
+                        </font>
+                    </td>
+                </tr>
+            	</table>
+        	</td>
+        	<td style="WIDTH: 100%" id="frmChat">
+            	<iframe frameBorder="0" scrolling=auto src="page.jsp?content_page=chatroom" style="width:100%;height:100%;VISIBILITY: inherit;Z-INDEX: 2">
+           		</iframe>
+        	</td>
+    		</tr>
+		</table>
 	</div>
 
 <!-- END CONTAINER -->
-		<div class="aarow">
-			<a href="#work" class="scroll"><img src="images/arw.png" alt=""></a>
-		</div>
+	<div class="aarow">
+		<a href="#work" class="scroll"><img src="images/arw.png" alt=""></a>
 	</div>
+</div>
 </div>
 <!-- Banner Ends Here -->
 
@@ -305,8 +331,23 @@
 </div>
 <%@ include file="frame_js.jsp"%>
 <!-- END PAGE LEVEL SCRIPTS -->
+<script>
+    if (self != top) {
+        top.location = self.location;
+    }
+    function switchSysBar() {
+        if (switchPoint.innerText == 4) {
+            switchPoint.innerText = 3
+            document.all("frmChat").style.display = "none"
+        } else {
+            switchPoint.innerText = 4
+            document.all("frmChat").style.display = ""
+        }
+    }
+</script>
 <script src="js/frame.js"></script>
 <script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/interclass.js" type="text/javascript"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/loadVotePage.js"></script>
 <script src="js/loadWorkPage.js"></script>

@@ -90,3 +90,12 @@
 	text-align:center;
 	margin:0;
 }
+.navPoint {
+    COLOR: white;
+    CURSOR: hand;
+    FONT-FAMILY: Webdings;
+    FONT-SIZE: 9pt
+}
+.a2 {
+    BACKGROUND-COLOR: A4B6D7;
+}
