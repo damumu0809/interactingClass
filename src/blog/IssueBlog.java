@@ -70,20 +70,23 @@ public class IssueBlog extends HttpServlet {
 		Date date = new Date();
 		long time = date.getTime();
 		
-		
+		int hasAcc = 0;//标注是否有附件
 		
 		
 		//图片、视频、音频
 		 isMultipart = ServletFileUpload.isMultipartContent(request);
 		 if(!isMultipart){
 			 //没有文件上传
+			 hasAcc = 0;
 			 System.out.println("没有附件");
+		 }else{
+			 hasAcc = 1;
 		 }
 		 DiskFileItemFactory factory = new DiskFileItemFactory();
 	      // 文件大小的最大值将被存储在内存中
 	      factory.setSizeThreshold(maxMemSize);
 	      // Location to save data that is larger than maxMemSize.
-	      factory.setRepository(new File("C:\\temp"));
+	      factory.setRepository(new File("C://temp"));
 	      
 	      // 创建一个新的文件上传处理程序
 	      ServletFileUpload upload = new ServletFileUpload(factory);
@@ -102,6 +105,7 @@ public class IssueBlog extends HttpServlet {
 	      try{
 			fileItems = upload.parseRequest(request);
 		
+			
 	      // 处理上传的文件项
 			//Iterator i = fileItems.iterator();
 			
@@ -112,7 +116,6 @@ public class IssueBlog extends HttpServlet {
 	      long sizeInBytes;
 	      
 	      for(FileItem fi :fileItems){
-	      //只能上传一个文件！！！！
 	         if ( !fi.isFormField () )	
 	         {
 	            // 获取上传文件的参数
@@ -142,7 +145,7 @@ public class IssueBlog extends HttpServlet {
 	        	 key = fi.getFieldName();
 	        System.out.println(key);
 	        	 value = fi.getString();
-	        System.out.println(value);
+	       
 	        //中文乱码
 	        	value =  new String(value.getBytes("iso8859-1"),"utf-8");
 	        	System.out.println(value);
@@ -155,16 +158,20 @@ public class IssueBlog extends HttpServlet {
 	    //添加进表blog并获得blog_id
 	      String topic = map.get("topic");
 	      String text = map.get("text");
-	      String sql1 = "INSERT INTO blog(user_name, time, topic, text) VALUES('"+user_name+"','"+time+"','"+topic+"','"+text+"')";
+	      String sql1 = "INSERT INTO blog(user_name, time, topic, text, hasAcc) VALUES('"+user_name+"','"+time+"','"+topic+"','"+text+"','"+hasAcc+"')";
 	      
 	    
 	      int blog_id = db.query3(sql1);
 	      System.out.println(blog_id);
 	      
+	      
+	      
+	      
 	     //添加进表blog_accessory
 	      String sql2;
 	      String type = null;
 	      String dotname = null; //后缀名
+	     
 	      for(String href: allFile){
 	    	  System.out.println(href);
 	    	  //判断文件的类型

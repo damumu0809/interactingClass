@@ -21,31 +21,26 @@ System.out.println("构造出来的sql语句是："+sql);
 System.out.println(Identity);
 		
 			//通过用户身份设置菜单
-<<<<<<< HEAD
-			sql = "select * from menu where identity='"+Identity+"'";
+			sql = "select * from menu where IDENTITY='"+Identity+"'";
 			rs = query_db.query2(sql);
 System.out.println("构造出来的sql语句是："+sql);		
 			while (rs.next()) {
-=======
-			String new_identity = "student";
+			String new_identity = "学生";
 			switch(Identity) {
 				case "学生":
-					new_identity = "student";
+					new_identity = "学生";
 					break;
 				case "教师":
-					new_identity = "teacher";
+					new_identity = "教师";
 					break;
 			}
 			
 			Identity = "student";
-			String sql_menu = "select * from menu where identity='" + new_identity + "' order by id";
+			String sql_menu = "select * from menu where IDENTITY='" + new_identity + "' order by id";
 			ResultSet rs2 = query_db.query2(sql_menu);
-System.out.println("构造出来的rs2："+rs2);
-System.out.println("构造出来的sql语句是："+sql_menu);
-System.out.println("构造出来的rs2.next()："+rs2.next());
+
 			while (rs2.next()) {
-System.out.println("while map ");
->>>>>>> a0c038fdf17848315b141b4162591defa451d65d
+
 				List list = new ArrayList();
 				System.out.println("list " + list);
 				System.out.println("menu_name" + rs2.getString("menu_name"));
@@ -60,7 +55,8 @@ System.out.println("while map ");
 		
 		}
 System.out.println("数据库关闭了！！！");
-	} catch (SQLException sqlexception) {
+		}
+	}catch (SQLException sqlexception) {
 		sqlexception.printStackTrace();
 	}
 	//////////数据库查询完毕，得到了json数组jsonList//////////

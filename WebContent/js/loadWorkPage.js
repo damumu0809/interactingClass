@@ -91,6 +91,7 @@ function studentPage(){
     });
 }
 
+
 function teacherPage(){
     var txt1, txt3;
 
