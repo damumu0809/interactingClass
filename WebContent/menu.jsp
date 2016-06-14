@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8" language="java"
-	import="java.text.*,org.json.JSONObject,java.io.PrintWriter"
+	import="java.text.*,org.json.JSONObject,java.util.ArrayList,java.io.PrintWriter"
 	import="java.util.*,java.sql.*,java.io.IOException"
 	import="database.*,java.sql.ResultSet"%>
 <%
@@ -21,42 +21,23 @@ System.out.println("构造出来的sql语句是："+sql);
 System.out.println(Identity);
 		
 			//通过用户身份设置菜单
-			sql = "select * from menu where IDENTITY='"+Identity+"'";
+			sql = "select * from menu where identity='"+Identity+"' order by id";
 			rs = query_db.query2(sql);
 System.out.println("构造出来的sql语句是："+sql);		
 			while (rs.next()) {
-			String new_identity = "学生";
-			switch(Identity) {
-				case "学生":
-					new_identity = "学生";
-					break;
-				case "教师":
-					new_identity = "教师";
-					break;
-			}
-			
-			Identity = "student";
-			String sql_menu = "select * from menu where IDENTITY='" + new_identity + "' order by id";
-			ResultSet rs2 = query_db.query2(sql_menu);
-
-			while (rs2.next()) {
-
 				List list = new ArrayList();
-				System.out.println("list " + list);
-				System.out.println("menu_name" + rs2.getString("menu_name"));
-				list.add(rs2.getString("menu_name"));
-				list.add(rs2.getString("menu_href"));
-				list.add(rs2.getString("li_class"));
-				list.add(rs2.getString("span_class"));
-				list.add(rs2.getString("a_class")); 
-				jsonList.add(list); 
+				list.add(rs.getString("MENU_NAME"));
+				list.add(rs.getString("MENU_HREF"));
+				list.add(rs.getString("LI_CLASS"));
+				list.add(rs.getString("SPAN_CLASS"));
+				list.add(rs.getString("A_CLASS"));
+				jsonList.add(list);
 			}
+		}
 
 		
-		}
 System.out.println("数据库关闭了！！！");
-		}
-	}catch (SQLException sqlexception) {
+	} catch (SQLException sqlexception) {
 		sqlexception.printStackTrace();
 	}
 	//////////数据库查询完毕，得到了json数组jsonList//////////
