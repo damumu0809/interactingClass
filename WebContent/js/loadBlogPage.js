@@ -69,7 +69,7 @@ $.post("/interactingClass/BlogPage",function(res){
                 //slide图片
                 slide++;
                 txt = '';
-                txt = '<div  class="callbacks_container blog-slide-n" >'+
+                txt = '<div  class="callbacks_container blog-slide-n" id="top">'+
                     '<ul class="rslides " id="slider4">';
 
                 picture.forEach(function(item, index, array){
@@ -139,8 +139,8 @@ $.post("/interactingClass/BlogPage",function(res){
                 '<h3>'+topic+'</h3>'+
                 '<ul class="blog-list" id="'+id+'">'+
                 '<li>'+ userName+'</li>'+
-                '<li><a id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
-                '<li><a id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
+                '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
+                '<li><a href="javascript:" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
                 '</ul>'+
                 '<span class="blog-line"></span>'+
                 '<p class="head-sub">'+text.substr(0, 50)+'</p>'+
@@ -151,15 +151,17 @@ $.post("/interactingClass/BlogPage",function(res){
         $("#blog").append(txt);
         
     });
+
+    $("#like5").click(function(){
+        $.post("/interactingClass/Like",id);
+    });
+
+    $("#comment"+id).click(function(){
+        $.post("/interactingClass/Comment",id);
+    });
 });
 
-$("#like"+id).onclick(function(){
-    $.post("/interactingClass/Like");
-});
 
-$("#comment"+id).onclick(function(){
-    $.post("/interactingClass/Comment");
-});
 
 //只能上传一种附件
 /*
