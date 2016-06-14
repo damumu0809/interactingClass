@@ -79,7 +79,7 @@ public class BlogPage extends HttpServlet {
 		//查询该页的记录
 		int page = 1;
 		int first = (page -1)*5;
-		int last = page*5-1;
+		int last = page*5;
 		String sql2 = "SELECT * FROM blog ORDER BY id DESC LIMIT "+first+","+last+"";
 		System.out.println(sql2);
 		ResultSet rs2 = db.query2(sql2);

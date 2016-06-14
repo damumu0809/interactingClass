@@ -138,27 +138,12 @@
 </div>
 <script src="js/frame.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/loadBlogPage.js"></script>
 <script src="js/responsiveslides.min.js"></script>
+<script src="js/loadBlogPage.js"></script>
+
 <script>
     // You can also use "$(window).load(function() {"
-    $(function () {
-        // Slideshow 4
-        $("#slider4").responsiveSlides({
-            auto: true,
-            pager: true,
-            nav: true,
-            speed: 500,
-            namespace: "callbacks",
-            before: function () {
-                $('.events').append("<li>before event fired.</li>");
-            },
-            after: function () {
-                $('.events').append("<li>after event fired.</li>");
-            }
-        });
 
-    });
 </script>
 <!----//End-slider-script---->
 <script type="text/javascript" src="js/easing.js"></script>

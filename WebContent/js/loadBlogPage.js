@@ -5,7 +5,7 @@ $.post("/interactingClass/BlogPage",function(res){
     var message = $.parseJSON(res);
     var list= message.list;
 
-    var id,userName, issueTime,like,comment,topic, text, hasAcc,acc;
+    var userName, issueTime,like,comment,topic, text, hasAcc,acc;
     var type, href;
     var picture, video, music;
     var imgNum = 0;
@@ -15,7 +15,7 @@ $.post("/interactingClass/BlogPage",function(res){
     //list遍历
     list.forEach(function(item, index, array){
         txt = '';
-        id = item.id;
+        var id = item.id;
         userName = item.user_name;
         issueTime = item.issueTime;
         like = item.like;
@@ -69,8 +69,8 @@ $.post("/interactingClass/BlogPage",function(res){
                 //slide图片
                 slide++;
                 txt = '';
-                txt = '<div  class="callbacks_container blog-slide-n" id="top">'+
-                    '<ul class="rslides " id="slider4">';
+                txt = '<div  class="callbacks_container blog-slide-n" id="top'+slide+'">'+
+                    '<ul class="rslides " id="slider'+slide+'">';
 
                 picture.forEach(function(item, index, array){
                     txt = txt + '<li>'+
@@ -149,16 +149,52 @@ $.post("/interactingClass/BlogPage",function(res){
                 '</div>'+
                 '</div>';
         $("#blog").append(txt);
+
+
+
+        $("#like"+id).click(function(){
+            //传递的是data对象
+            var data={"id":id};
+            $.post("/interactingClass/Like",data,function(res){
+                var message = $.parseJSON(res);
+                if(message.code == 0){
+                    //点赞成功，刷新页面
+                    window.location.reload();
+                }
+            });
+        });
+
+        $("#comment"+id).click(function(){
+            var data={"id":id};
+            $.post("/interactingClass/Comment",data);
+        });
         
     });
 
-    $("#like5").click(function(){
-        $.post("/interactingClass/Like",id);
-    });
+    for(slide; slide > 0; slide--){
+        $("#slider"+slide).responsiveSlides({
+            auto: true,
+            pager: true,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+                $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+                $('.events').append("<li>after event fired.</li>");
+            }
+        });
+    }
 
-    $("#comment"+id).click(function(){
-        $.post("/interactingClass/Comment",id);
-    });
+
+
+
+
+
+
+
+
 });
 
 

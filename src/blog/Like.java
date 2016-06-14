@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import database.DB;
 
 /**
@@ -49,6 +52,7 @@ public class Like extends HttpServlet {
 		DB db = new DB();
 		
 		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("username"));
 		String user_name = session.getAttribute("username").toString();
 		
 		Date date = new Date();
@@ -56,16 +60,27 @@ public class Like extends HttpServlet {
 		
 		//获取blog_id
 		int blog_id = Integer.parseInt(request.getParameter("id"));
+		System.out.println(blog_id);
 		
 		//插入blog_like表 每条点赞记录
-		String sql1 = "ISERT INTO blog_like(blog_id, like_person, like_time) VALUES(,'"+user_name+"','"+time+"')";
+		String sql1 = "INSERT INTO blog_like(blog_id, like_person, like_time) VALUES ('"+blog_id+"','"+user_name+"','"+time+"')";
 		db.query1(sql1);
 		
 		//blog表中点赞数+1
-		String sql2 = "UPDATE blog SET like=like+1 WHERE id = '"+blog_id+"'";
+		String sql2 = "UPDATE blog SET blog.like=blog.like+1 WHERE id="+blog_id+"";
 		db.query1(sql2);
+		System.out.println("点赞成功");
 		
-		out.print("<script type='text/javascript'>alert('点赞成功！');window.location.href='./blog.html';</script>");
+		JSONObject message = new JSONObject();
+		try {
+			message.put("code", 0);
+			message.put("mg", "success");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.println(message.toString());
+		
 	}
 
 }
