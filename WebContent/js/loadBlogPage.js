@@ -1,8 +1,27 @@
 var txt;
+var txt1;
+var page = 1;
+var pagedata = {"page":page};
 
-$.post("/interactingClass/BlogPage",function(res){
-    
+function post(){$.post("/interactingClass/BlogPage",pagedata,function(res){
+
+    console.log(page);
+
+
+    $("#blog").empty();
+    $("#fenye").empty();
     var message = $.parseJSON(res);
+    var code = message.code;
+
+    if(code == 1){
+        alert("请先登录！");
+        window.location.href = "login.jsp";
+
+    }
+
+
+
+    var pages = message.pages;
     var list= message.list;
 
     var userName, issueTime,like,comment,topic, text, hasAcc,acc;
@@ -60,7 +79,7 @@ $.post("/interactingClass/BlogPage",function(res){
             if(imgNum == 1){
                 //单张图片
                 txt = '';
-                txt = '<img src="'+picture[0].href+'" alt="">'+
+                txt = '<img src="'+picture[0]+'" alt="">'+
                     '<div class="blog-desc">'+
                     '<div class="desc-left">'+
                     '<i class="des-q"></i>';
@@ -168,8 +187,18 @@ $.post("/interactingClass/BlogPage",function(res){
             var data={"id":id};
             $.post("/interactingClass/Comment",data);
         });
-        
+
+
+
     });
+    txt1 = '';
+    txt1='<li><a href="javascript:" id="lastPage"><i></i></a></li>'+
+        '<li class="col-md-2">'+
+        '<input  style="width:30px" id="page" name="page" >'+
+        '<button style="width:30px" id="goto">goto</button>'+
+        '</li>'+
+        '<li class="nme"><a href="javascript:" id="nextPage"><i class="right"></i></a></li>';
+    $("#fenye").append(txt1);
 
     for(slide; slide > 0; slide--){
         $("#slider"+slide).responsiveSlides({
@@ -187,17 +216,56 @@ $.post("/interactingClass/BlogPage",function(res){
         });
     }
 
+    //总页面和当前页面的显示
 
 
+    //点击上下页以及输入页数的显示
 
 
+    $("#lastPage").click(function(){
+        if(page -1  >= 1){
+            page = page -1;
+            pagedata.page = page;
+            post();
+        }else{
+            //当前是第一页
+            alert("当前已是第一页");
+        }
+    });
 
+    $("#nextPage").click(function(){
+        if(page + 1 <= pages){
+            page = page + 1;
+            pagedata.page = page;
+            post();
+        }else{
+            alert("当前已是最后一页");
+        }
+    });
 
+    $("#page").attr("value",page);
 
+    $("#goto").click(function(){
+        var newPage;
+        if($("#page").val() == null){
+            newPage = 1;
+        }else{
+             newPage = $("#page").val();
+        }
+        console.log(newPage);
+        if(newPage>=1 && newPage <= pages){
+            page = newPage;
+            pagedata.page = page;
+            post();
+        }else{
+            alert("该页不存在！");
+        }
 
-});
+    });
 
+});}
 
+post();
 
 //只能上传一种附件
 /*

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,10 +48,25 @@ public class BlogPage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		request.setCharacterEncoding("utf-8");
 		
 		response.setContentType("text/html;charset=utf-8");
 		java.io.PrintWriter out = response.getWriter( );
+		
+		JSONObject message = new JSONObject();
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("username") == null){
+			try {
+				System.out.println("未登录");
+				message.put("code", 1);//未登录
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
 		
 		DB db = new DB();
 		
@@ -74,10 +90,11 @@ public class BlogPage extends HttpServlet {
 		//总页数
 		int pages = 1;
 		pages = count%5==0 ? count/5 :count/5+1;//每页五条记录
-		System.out.println(pages);
+		System.out.println("pages:"+pages);
 		
 		//查询该页的记录
-		int page = 1;
+		int page = Integer.parseInt(request.getParameter("page"));
+		System.out.println("page:"+page);
 		int first = (page -1)*5;
 		int last = page*5;
 		String sql2 = "SELECT * FROM blog ORDER BY id DESC LIMIT "+first+","+last+"";
@@ -100,7 +117,7 @@ public class BlogPage extends HttpServlet {
 		List allBlog = new ArrayList<>();
 		List allAcc = null;
 		
-		JSONObject message = new JSONObject();
+		
 		
 		try {
 			while(rs2.next()){
@@ -150,15 +167,19 @@ public class BlogPage extends HttpServlet {
 			
 			message.put("code", 0);
 			message.put("list", allBlog);
+			message.put("pages",pages);
 			
-			System.out.println(message.toString());
-			out.println(message.toString());
+			
 			
 		} catch (SQLException | JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
+		}
+		System.out.println(message.toString());
+		out.println(message.toString());
+		
 	}
+	
 
 }
