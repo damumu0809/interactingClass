@@ -58,9 +58,12 @@ public class Comment extends HttpServlet {
 		//获取blog_id
 		int blog_id = Integer.parseInt(request.getParameter("id"));
 		//获取reply_id
-		int reply_id = 0;
+		int reply_id = Integer.parseInt(request.getParameter("reply_id"));
 		
-		String sql1 = "INSERT INTO blog_comment(blog_id, person, time, reply_id) VALUES('"+blog_id+"','"+user_name+"','"+time+"','"+reply_id+"')";
+		String content = request.getParameter("content");
+		System.out.println(blog_id);
+		System.out.println(content);
+		String sql1 = "INSERT INTO blog_comment(blog_id, content, person, time, reply_id) VALUES('"+blog_id+"','"+content+"','"+user_name+"','"+time+"','"+reply_id+"')";
 		db.query1(sql1);
 		
 		if(reply_id == 0){
@@ -69,5 +72,6 @@ public class Comment extends HttpServlet {
 			db.query1(sql2);
 		}
 		
+		out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./single.jsp?id="+blog_id+"';</script>");
 	}
 }

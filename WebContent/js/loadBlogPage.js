@@ -159,12 +159,12 @@ function post(){$.post("/interactingClass/BlogPage",pagedata,function(res){
                 '<ul class="blog-list" id="'+id+'">'+
                 '<li>'+ userName+'</li>'+
                 '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
-                '<li><a href="javascript:" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
+                '<li><a href="single.jsp?id='+id+'#comment" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
                 '</ul>'+
                 '<span class="blog-line"></span>'+
                 '<p class="head-sub">'+text.substr(0, 50)+'</p>'+
                 '<div class="read-more">'+
-                '<a href="single.html">Read More</a>'+
+                '<a href="single.jsp?id='+id+'">Read More</a>'+
                 '</div>'+
                 '</div>';
         $("#blog").append(txt);
@@ -183,10 +183,10 @@ function post(){$.post("/interactingClass/BlogPage",pagedata,function(res){
             });
         });
 
-        $("#comment"+id).click(function(){
-            var data={"id":id};
-            $.post("/interactingClass/Comment",data);
-        });
+        //$("#comment"+id).click(function(){
+        //    var data={"id":id};
+        //    $.post("/interactingClass/Comment",data);
+        //});
 
 
 

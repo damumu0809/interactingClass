@@ -360,13 +360,13 @@
     
     	    
     if(pagen == 1){
-    	out.println("<script>$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');$('.tab-pane:eq(0)').addClass('active');</script>");
+    	out.println("<script>$('li:eq(2)').removeClass('active');$('.tab-pane:eq(2)').removeClass('active');$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');$('.tab-pane:eq(0)').addClass('active');</script>");
     }
     //if(pagen == 2){
     	//out.println("<script>$('li:eq(1)').addClass('active');</script>");
     //}
     if(pagen == 3){
-        out.println("<script>$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');$('.tab-pane:eq(2)').addClass('active');</script>");
+        out.println("<script>$('li:eq(0)').removeClass('active');$('.tab-pane:eq(0)').removeClass('active');$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');$('.tab-pane:eq(2)').addClass('active');</script>");
     }
  %>
 </body>
