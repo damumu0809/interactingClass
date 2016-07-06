@@ -9,11 +9,14 @@ function post1(){
 
     $.post("/interactingClass/VotePage",pagedata, function(res){
 
+        //添加删除投票 需要获取当前登录账户 若账户是发布投票者显示删除按钮
+        //所以需要接收username
 
         $("#fenye").empty();
         var message = $.parseJSON(res);
         var list= message.list;
         var pages = message.pages;
+        var name = message.username;
         if(list.length != 0){
             txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multiselectable="true">';
             $("#vote").append(txt);
@@ -65,6 +68,20 @@ function post1(){
             issueTime = item.issueTime;
             expireTime = item.expireTime;
 
+            if(name == issuePerson){
+                //需要显示删除button
+                txt = '<div class="panel panel-default">'+
+                    '<div class="panel-heading" role="tab" id="voteOne">'+
+                    '<h4 class="panel-title">'+
+                    '<a id="voteA" class="collapsed" role="button" data-toggle="collapse" data-parent="#voteAccordion" href="#collapseVoteOne" aria-expanded="false" aria-controls="collapseOne">'+
+                    '投票1'+
+                    '</a>'+
+                    '</h4>'+
+                    '<button id="deletevoteOne">删除投票</button>'+
+                    '</div>'+
+                    '<div id="collapseVoteOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">'+
+                    '<div class="panel-body" id="panelBody">';
+            }
 
                                 if(option3 == "null"){
                                     option3 = "";
@@ -139,6 +156,7 @@ function post1(){
                 $("#vote"+voteId+" h4").append(themetxt);
                 $("#voteA").text(theme);
                 $("#voteA").attr("id","voteA"+voteId);
+                $("#deletevoteOne").attr("id", "deletevote"+voteId);
                 //空白项不显示
                 if (option6 == "") {
                     $("#panelBody .progress:eq(5)").remove();
@@ -224,6 +242,22 @@ function post1(){
             }
 
         $("#panelBody").attr("id","panelBody"+voteId);
+    alert(voteId);
+        $("#deletevote"+voteId).click(function(){
+            alert("确认删除该投票吗？")
+            alert(issuePerson);
+            alert(voteId);//不是正确的值
+            var deleteVote = {"voteid":voteId, "issuePerson":issuePerson};
+            $.post("/interactingClass/DeleteVote", deleteVote, function(res){
+                var message = $.parseJSON(res);
+                var code = message.code;
+                if(code == 0){
+                    //删除成功
+                    alert("删除成功！");
+                    window.location.reload();
+                }
+            });
+        }) ;
         });
 
 

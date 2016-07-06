@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8678cfa-2419-4282-94c1-76e15b078b99" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/onloadPage/StudentPage.class" afterPath="$PROJECT_DIR$/../build/classes/onloadPage/StudentPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/onloadPage/TeacherPage.class" afterPath="$PROJECT_DIR$/../build/classes/onloadPage/TeacherPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/votePage/VotePage.class" afterPath="$PROJECT_DIR$/../build/classes/votePage/VotePage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/onloadPage/StudentPage.java" afterPath="$PROJECT_DIR$/../src/onloadPage/StudentPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/onloadPage/TeacherPage.java" afterPath="$PROJECT_DIR$/../src/onloadPage/TeacherPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/votePage/VotePage.java" afterPath="$PROJECT_DIR$/../src/votePage/VotePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.jsp" afterPath="$PROJECT_DIR$/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadBlogPage.js" afterPath="$PROJECT_DIR$/js/loadBlogPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog.html" afterPath="$PROJECT_DIR$/blog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadVotePage.js" afterPath="$PROJECT_DIR$/js/loadVotePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadWorkPage.js" afterPath="$PROJECT_DIR$/js/loadWorkPage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebContent.iws" />
@@ -64,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/js/loadWorkPage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="268" column="39" selection-start-line="268" selection-start-column="39" selection-end-line="268" selection-end-column="39" />
+              <caret line="247" column="19" selection-start-line="238" selection-start-column="16" selection-end-line="247" selection-end-column="19" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <marker date="1467790764241" expanded="true" signature="4521:4531" placeholder="..." />
@@ -79,11 +71,11 @@
       <file leaf-file-name="loadVotePage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39583334">
-              <caret line="12" column="28" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.8055556">
+              <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
               <folding>
-                <marker date="1467687412984" expanded="true" signature="10800:10810" placeholder="..." />
-                <marker date="1467687412984" expanded="true" signature="10866:10876" placeholder="..." />
+                <marker date="1467796876310" expanded="true" signature="12399:12409" placeholder="..." />
+                <marker date="1467796876310" expanded="true" signature="12465:12475" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -92,12 +84,32 @@
       <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="74" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="74" />
+            <state vertical-scroll-proportion="-4.410714">
+              <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blog.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/blog.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1512" column="18" selection-start-line="1512" selection-start-column="18" selection-end-line="1512" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,15 +140,15 @@
         <option value="$PROJECT_DIR$/myjs/loadPage.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/mycss/index.css" />
-        <option value="$PROJECT_DIR$/blog.html" />
         <option value="$PROJECT_DIR$/single.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/loadDetailPage.js" />
         <option value="$PROJECT_DIR$/single.jsp" />
         <option value="$PROJECT_DIR$/js/loadBlogPage.js" />
-        <option value="$PROJECT_DIR$/js/loadVotePage.js" />
         <option value="$PROJECT_DIR$/index.jsp" />
         <option value="$PROJECT_DIR$/js/loadWorkPage.js" />
+        <option value="$PROJECT_DIR$/blog.html" />
+        <option value="$PROJECT_DIR$/js/loadVotePage.js" />
       </list>
     </option>
   </component>
@@ -210,6 +222,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WebContent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -219,6 +245,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/小木/workspace/interactingClass/WebContent/js/layout.js" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -274,8 +301,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -328,16 +355,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/avatar3.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/background1.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -548,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/layout.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -566,24 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="114" column="50" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1512" column="18" selection-start-line="1512" selection-start-column="18" selection-end-line="1512" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/blog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="74" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="74" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -625,10 +622,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1512" column="18" selection-start-line="1512" selection-start-column="18" selection-end-line="1512" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/blog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.410714">
+          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031353135">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/loadWorkPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="268" column="39" selection-start-line="268" selection-start-column="39" selection-end-line="268" selection-end-column="39" />
+          <caret line="247" column="19" selection-start-line="238" selection-start-column="16" selection-end-line="247" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1467790764241" expanded="true" signature="4521:4531" placeholder="..." />
@@ -641,11 +673,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39583334">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.8055556">
+          <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
           <folding>
-            <marker date="1467687412984" expanded="true" signature="10800:10810" placeholder="..." />
-            <marker date="1467687412984" expanded="true" signature="10866:10876" placeholder="..." />
+            <marker date="1467796876310" expanded="true" signature="12399:12409" placeholder="..." />
+            <marker date="1467796876310" expanded="true" signature="12465:12475" placeholder="..." />
           </folding>
         </state>
       </provider>

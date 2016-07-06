@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import database.DB;
+
 /**
  * Servlet implementation class DeleteVote
  */
@@ -41,9 +46,47 @@ public class DeleteVote extends HttpServlet {
 				response.setContentType("text/html;charset=utf-8");
 				java.io.PrintWriter out = response.getWriter( );
 				
-				//判断身份为教师
+				JSONObject message = new JSONObject();
+				
+				//判断username
 				HttpSession session = request.getSession();
-				String identity = session.getAttribute("identity").toString();
+				String username = session.getAttribute("username").toString();
+				System.out.println(username);
+				String issuePerson = request.getParameter("issuePerson");
+				System.out.println(issuePerson);
+				if(username.equals(issuePerson)){
+					//可以删除
+					System.out.println("可以删除");
+					DB db = new DB();
+					int voteID = Integer.parseInt(request.getParameter("voteid"));
+					String sql = "DELETE FROM vote WHERE id =" + voteID;
+					System.out.println("要删除投票id"+voteID);
+					db.query1(sql);
+					System.out.println("删除成功！");
+					try {
+						message.put("code", 0);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					try {
+						message.put("sign", "删除成功");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				else{
+					try {
+						message.put("code", 1);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
+				out.println(message.toString());
 	}
 
 }

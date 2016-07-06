@@ -226,6 +226,7 @@ public class VotePage extends HttpServlet {
 			message.put("code", 0);
 			message.put("list", allVote);
 			message.put("pages", pages);
+			message.put("username", name);
 			
 			out.println(message.toString());
 			//在前端根据multipleChoice来加载单选还是多选框
