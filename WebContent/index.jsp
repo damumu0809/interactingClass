@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/index.css">
+    <link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
 <%@page contentType="text/html; charset=UTF-8" language="java"
     import="java.text.*,org.json.JSONObject.*,java.util.ArrayList,java.io.PrintWriter"
     import="java.util.*,java.sql.*,java.io.IOException"
@@ -89,10 +90,10 @@
         	   System.out.println("===================");
         	   System.out.println(identity);
                if(identity.equals("学生")){
-            	   out.println("<script>var flag=1;function page(){if(flag==1){studentPage();} flag=0;}</script>");
+            	   out.println("<script>var flag=1;function pageLoad(){if(flag==1){studentPage();} flag=0;}</script>");
                }
                if(identity.equals("教师")){
-            	   out.println("<script>var flag=1;function page(){if(flag==1){teacherPage();} flag=0;}</script>");
+            	   out.println("<script>var flag=1;function pageLoad(){if(flag==1){teacherPage();} flag=0;}</script>");
                }
            }
 %>
@@ -114,7 +115,7 @@
                         </a>
                     </li>
                     <li role="presentation" >
-                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="page();">
+                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="pageLoad();">
                             <span class="glyphicon glyphicon-edit" aria-hidden="false"></span>
                             作业
                         </a>
@@ -290,6 +291,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
 
@@ -349,7 +351,7 @@
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/interclass.js" type="text/javascript"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/loadVotePage.js"></script>
+<script src="js/loadVotePage.js"></script> 
 <script src="js/loadWorkPage.js"></script>
  <%int  pagen= 2;
      if(request.getParameter("page") == null){

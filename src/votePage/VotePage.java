@@ -60,8 +60,37 @@ public class VotePage extends HttpServlet {
 		
 		//读取数据库投票记录
 		DB db = new DB();
+		String sql = "SELECT * FROM vote ";
 		String sql1 = "SELECT * FROM vote order by id desc";
 		String sql2 = "SELECT * FROM voteRecord";
+		
+				//总记录数
+				int count = 0;
+				ResultSet rs = db.query2(sql);
+				try {
+					while(rs.next()){
+						count++;
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				System.out.println(count);
+				
+				
+				//总页数
+				int pages = 1;
+				pages = count%5==0 ? count/5 :count/5+1;//每页五条记录
+				System.out.println("pages:"+pages);
+				
+				//查询该页的记录
+				int page = Integer.parseInt(request.getParameter("page"));
+				System.out.println("page:"+page);
+				int first = (page -1)*5;
+				int last = page*5;
+				String sql3 = "SELECT * FROM vote ORDER BY id DESC LIMIT "+first+","+last+"";
+				System.out.println(sql3);
+				
 		
 		//投票id、主题、选项及票数、单选多选
 		String theme;
@@ -84,7 +113,7 @@ public class VotePage extends HttpServlet {
 		Date date = new Date();
 		long time = date.getTime();
 
-		ResultSet rs1 = db.query2(sql1);
+		ResultSet rs1 = db.query2(sql3);
 		try {
 			while(rs1.next()){
 				
@@ -196,6 +225,7 @@ public class VotePage extends HttpServlet {
 			JSONObject message = new JSONObject();
 			message.put("code", 0);
 			message.put("list", allVote);
+			message.put("pages", pages);
 			
 			out.println(message.toString());
 			//在前端根据multipleChoice来加载单选还是多选框

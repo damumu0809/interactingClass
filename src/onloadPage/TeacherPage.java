@@ -55,8 +55,28 @@ public class TeacherPage extends HttpServlet {
 		HttpSession session = request.getSession();
 		String username = session.getAttribute("username").toString();
 		
+		int page = Integer.parseInt(request.getParameter("page"));
+		
         DB db = new DB();
-		String sqlSelect = "SELECT * FROM issueWork order by id desc";
+        
+        int count = 0;
+        String sqlAll = "SELECT * FROM issueWork";
+        ResultSet rsResultSet = db.query2(sqlAll);
+        try {
+			while(rsResultSet.next()){
+				count++;
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        System.out.println("老师页面作业总数："+count);
+        int pages = 1;
+		pages = count%5==0 ? count/5 :count/5+1;//每页五条记录
+		System.out.println("pages:"+pages);
+		int first = (page -1)*5;
+		int last = page*5;
+		String sqlSelect = "SELECT * FROM issueWork order by id desc LIMIT "+first+","+last+"";
 		ResultSet rs1 = db.query2(sqlSelect);
 		
 		int taskNum;
@@ -110,6 +130,8 @@ public class TeacherPage extends HttpServlet {
 			JSONObject message = new JSONObject();
 			message.put("code", 0);
 			message.put("list", allWork);
+			message.put("pages", pages);
+			message.put("count", count);
 			
 			out.println(message.toString());
 			

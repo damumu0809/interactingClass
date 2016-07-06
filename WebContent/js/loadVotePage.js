@@ -1,13 +1,25 @@
 //加载投票页面
 var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multiselectable="true">';
 
-    $.post("/interactingClass/VotePage", function(res){
+var page = 1;
+var pagedata = {"page":page};
+
+function post1(){
+
+
+    $.post("/interactingClass/VotePage",pagedata, function(res){
+
+
+        $("#fenye").empty();
         var message = $.parseJSON(res);
         var list= message.list;
-
+        var pages = message.pages;
         if(list.length != 0){
+            txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multiselectable="true">';
             $("#vote").append(txt);
         }
+
+        $("#voteAccordion").empty();
 
         var voteId;
         var multipleChoice;
@@ -17,6 +29,7 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
         var hasVoted, hasExpired, issuePerson, issueTime, expireTime;
 
         var themetxt;
+
         //遍历数组list
         list.forEach(function(item, index, array){
             txt = '<div class="panel panel-default">'+
@@ -212,7 +225,66 @@ var txt = '<div class="panel-group" id="voteAccordion" role="tablist" aria-multi
 
         $("#panelBody").attr("id","panelBody"+voteId);
         });
+
+
+        <!-- 分页-->
+        var txtpage = '<div class="pagnations">'+
+        '<ul class="page-list" id="fenye">'+
+        '</ul>'+
+        '</div>';
+        $("#voteAccordion").append(txtpage);
+
+        var pagetxt ='<li><a href="javascript:" id="lastPage"><i></i></a></li>'+
+            '<li class="col-md-2">'+
+            '<input  style="width:30px" id="page" name="page" >'+
+            '<button style="width:30px" id="goto">goto</button>'+
+            '</li>'+
+            '<li class="nme"><a href="javascript:" id="nextPage"><i class="right"></i></a></li>';
+        $("#fenye").append(pagetxt);
+
+        $("#lastPage").click(function(){
+            if(page -1  >= 1){
+                page = page -1;
+                pagedata.page = page;
+                post1();
+            }else{
+                //当前是第一页
+                alert("当前已是第一页");
+            }
+        });
+
+        $("#nextPage").click(function(){
+            if(page + 1 <= pages){
+                page = page + 1;
+                pagedata.page = page;
+                post1();
+            }else{
+                alert("当前已是最后一页");
+            }
+        });
+
+        $("#page").attr("value",page);
+
+        $("#goto").click(function(){
+            var newPage;
+            if($("#page").val() == null){
+                newPage = 1;
+            }else{
+                newPage = $("#page").val();
+            }
+            console.log(newPage);
+            if(newPage>=1 && newPage <= pages){
+                page = newPage;
+                pagedata.page = page;
+                post1();
+            }else{
+                alert("该页不存在！");
+            }
+
+        });
     });
+}
+post1();
 
 
 //发布投票添加选项JS

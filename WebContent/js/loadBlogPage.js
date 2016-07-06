@@ -3,7 +3,8 @@ var txt1;
 var page = 1;
 var pagedata = {"page":page};
 
-function post(){$.post("/interactingClass/BlogPage",pagedata,function(res){
+function post(){
+    $.post("/interactingClass/BlogPage",pagedata,function(res){
 
     console.log(page);
 
