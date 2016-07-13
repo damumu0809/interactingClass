@@ -81,7 +81,7 @@ public class IssueBlog extends HttpServlet {
 			 System.out.println("没有附件");
 		 }else{
 			 hasAcc = 1;
-		 }
+		 }//这里并不能判断是否有附件
 		 DiskFileItemFactory factory = new DiskFileItemFactory();
 	      // 文件大小的最大值将被存储在内存中
 	      factory.setSizeThreshold(maxMemSize);
@@ -121,26 +121,36 @@ public class IssueBlog extends HttpServlet {
 	            // 获取上传文件的参数
 	            fieldName = new String(fi.getFieldName().getBytes("GB2312"),"iso8859-1");
 	            fileName = fi.getName();
-	            contentType = fi.getContentType();
-	            isInMemory = fi.isInMemory();
-	            sizeInBytes = fi.getSize();
-	            // 写入文件
-	            filePath = getServletContext().getInitParameter("file-upload");
-	            if( fileName.lastIndexOf("\\") >= 0 ){
-	            	filePath = filePath + fileName.substring( fileName.lastIndexOf("\\")+1);
-	               file = new File(filePath );
+	            System.out.println(fileName);
+	            if(fileName.isEmpty()){
+	            	//没有上传文件
+	            	hasAcc = 0;
 	            }else{
-	            	filePath = filePath + fileName.substring(fileName.lastIndexOf("\\")+1);
-	                file = new File(filePath );
+	            	hasAcc = 1;
+	            	contentType = fi.getContentType();
+		            isInMemory = fi.isInMemory();
+		            sizeInBytes = fi.getSize();
+		            // 写入文件
+		            filePath = getServletContext().getInitParameter("file-upload");
+		            if( fileName.lastIndexOf("\\") >= 0 ){
+		            	filePath = filePath + fileName.substring( fileName.lastIndexOf("\\")+1);
+		               file = new File(filePath );
+		            }else{
+		            	filePath = filePath + fileName.substring(fileName.lastIndexOf("\\")+1);
+		                file = new File(filePath );
+		            }
+		            System.out.println(filePath);
+		           
+		            
+					fi.write( file ) ;
+					
+		            fileName = fileName.substring( fileName.lastIndexOf("\\")+1);
+		            allFile.add(filePath);
+		            System.out.println("所有附件"+allFile);
+		            
+		            out.println("Uploaded Filename: " + fileName + "<br>");	 
 	            }
-	            System.out.println(filePath);
-	           
-				fi.write( file ) ;
-				
-	            fileName = fileName.substring( fileName.lastIndexOf("\\")+1);
-	            allFile.add(filePath);
-	            System.out.println(allFile);
-	            out.println("Uploaded Filename: " + fileName + "<br>");	            
+	                       
 	         }else {	        	 
 	        	 key = fi.getFieldName();
 	        System.out.println(key);
@@ -158,42 +168,54 @@ public class IssueBlog extends HttpServlet {
 	    //添加进表blog并获得blog_id
 	      String topic = map.get("topic");
 	      String text = map.get("text");
-	      String sql1 = "INSERT INTO blog(user_name, time, topic, text, hasAcc) VALUES('"+user_name+"','"+time+"','"+topic+"','"+text+"','"+hasAcc+"')";
 	      
-	    
-	      int blog_id = db.query3(sql1);
-	      System.out.println(blog_id);
-	      
-	      
-	      
-	      
-	     //添加进表blog_accessory
-	      String sql2;
-	      String type = null;
-	      String dotname = null; //后缀名
-	     
-	      for(String href: allFile){
-	    	  System.out.println(href);
-	    	  //判断文件的类型
-	    	  dotname = href.substring( href.lastIndexOf(".")+1);
-	    	  System.out.println(dotname);
-	    	  
-	    	  if(dotname.equals("bmp")||dotname.equals("jpg")||dotname.equals("jepg")||dotname.equals("gif")||dotname.equals("swf")){
-	    		 type = "picture"; 
+	      if(topic.isEmpty()){
+	    	  out.println("<script>alert('主题不能为空！');window.location.href='./blog.html';</script>");
+	      }else{
+	    	  if(text.isEmpty()){
+	    		  out.println("<script>alert('内容不能为空！');window.location.href='./blog.html';</script>");
+	    	  }else{
+	    		  String sql1 = "INSERT INTO blog(user_name, time, topic, text, hasAcc) VALUES('"+user_name+"','"+time+"','"+topic+"','"+text+"','"+hasAcc+"')";
+	    	      
+	    		    
+	    	      int blog_id = db.query3(sql1);
+	    	      System.out.println(blog_id);
+	    	      
+	    	    //添加进表blog_accessory
+	    	      String sql2;
+	    	      String type = null;
+	    	      String dotname = null; //后缀名
+	    	     
+	    	      for(String href: allFile){
+	    	    	  System.out.println(href);
+	    	    	  //判断文件的类型
+	    	    	  dotname = href.substring( href.lastIndexOf(".")+1);
+	    	    	  System.out.println(dotname);
+	    	    	  
+	    	    	  if(dotname.equals("bmp")||dotname.equals("jpg")||dotname.equals("jepg")||dotname.equals("gif")||dotname.equals("swf")){
+	    	    		 type = "picture"; 
+	    	    	  }
+	    	    	  if(dotname.equals("avi")||dotname.equals("mpeg")||dotname.equals("mov")||dotname.equals("avi")||dotname.equals("mp4")){
+	    	    		 type = "video"; 
+	    	    	  }
+	    	    	  if(dotname.equals("cmf")||dotname.equals("cda")||dotname.equals("mp3")||dotname.equals("wav")||dotname.equals("mid")){
+	    		    	 type = "music"; 
+	    		     }
+	    	    	 System.out.println(type);	    	  
+	    	    	  
+	    	    	  sql2 = "INSERT INTO blog_accessory(blog_id, type, href) VALUES('"+blog_id+"','"+type+"' ,'"+href+"' )";
+	    	    	  sql2 = sql2.replaceAll("\\\\","/");
+	    	    	  db.query1(sql2);
+	    	      }
+	    	      out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./blog.html';</script>");
+	    		  
 	    	  }
-	    	  if(dotname.equals("avi")||dotname.equals("mpeg")||dotname.equals("mov")||dotname.equals("avi")||dotname.equals("mp4")){
-	    		 type = "video"; 
-	    	  }
-	    	  if(dotname.equals("cmf")||dotname.equals("cda")||dotname.equals("mp3")||dotname.equals("wav")||dotname.equals("mid")){
-		    	 type = "music"; 
-		     }
-	    	 System.out.println(type);	    	  
-	    	  
-	    	  sql2 = "INSERT INTO blog_accessory(blog_id, type, href) VALUES('"+blog_id+"','"+type+"' ,'"+href+"' )";
-	    	  sql2 = sql2.replaceAll("\\\\","/");
-	    	  db.query1(sql2);
 	      }
-	      out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./blog.html';</script>");
+	      
+	      
+	      
+	      
+	  	     
 	 }
 	 
 }

@@ -31,7 +31,6 @@
 			<ul id="menu_ul" class="navig">
 			<!-- 导航部分 -->
 				<li><a href="#"  class="active">首页</a></li>
-				<li><a href="#" class="scroll">互动课堂</a></li>
 			</ul>			
 		</div>
 		<div class="clearfix"></div>			
@@ -103,19 +102,19 @@
             <div class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation">
-                        <a href="#vote" aria-controls="vote" role="tab" data-toggle="tab" >
+                        <a href="#vote" aria-controls="vote" role="tab" data-toggle="tab" aria-expanded="false">
                         <span class="glyphicon glyphicon-stats" aria-hidden="false"></span>
                         投票
                         </a>
                     </li>
                     <li role="presentation" class="active" >
-                        <a href="#signin" aria-controls="signin" role="tab" data-toggle="tab">
+                        <a href="#signin" aria-controls="signin" role="tab" data-toggle="tab" aria-expanded="true">
                             <span class="glyphicon glyphicon-sunglasses" aria-hidden="false"></span>
                             签到
                         </a>
                     </li>
                     <li role="presentation" >
-                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="pageLoad();">
+                        <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="pageLoad();" aria-expanded="false">
                             <span class="glyphicon glyphicon-edit" aria-hidden="false"></span>
                             作业
                         </a>
@@ -362,13 +361,15 @@
     
     	    
     if(pagen == 1){
-    	out.println("<script>$('li:eq(2)').removeClass('active');$('.tab-pane:eq(2)').removeClass('active');$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(0)').addClass('active');$('.tab-pane:eq(0)').addClass('active');</script>");
+    	out.println("<script>$('li:eq(1)').removeClass('active');alert('1');$('li:eq(1) a').attr('aria-expanded', 'false');$('.tab-pane:eq(1)').removeClass('active');"+
+    		"$('li:eq(0)').addClass('active');$('li:eq(0) a').attr('aria-expanded', 'true');$('.tab-pane:eq(0)').addClass('active');</script>");
     }
     //if(pagen == 2){
     	//out.println("<script>$('li:eq(1)').addClass('active');</script>");
     //}
     if(pagen == 3){
-        out.println("<script>$('li:eq(0)').removeClass('active');$('.tab-pane:eq(0)').removeClass('active');$('li:eq(1)').removeClass('active');$('.tab-pane:eq(1)').removeClass('active');$('li:eq(2)').addClass('active');$('.tab-pane:eq(2)').addClass('active');</script>");
+    	out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(1) a').attr('aria-expanded', 'false');$('.tab-pane:eq(1)').removeClass('active');"+
+        		"$('li:eq(2)').addClass('active');$('li:eq(2) a').attr('aria-expanded', 'true');$('.tab-pane:eq(2)').addClass('active');</script>");
     }
  %>
 </body>

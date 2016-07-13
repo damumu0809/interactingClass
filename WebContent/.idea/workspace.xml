@@ -2,8 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8678cfa-2419-4282-94c1-76e15b078b99" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../build/classes/blog/PersonalPage.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../src/blog/PersonalPage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/loadPersonalPage.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/personal.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/blog/IssueBlog.class" afterPath="$PROJECT_DIR$/../build/classes/blog/IssueBlog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/issueVote/IssueVote.class" afterPath="$PROJECT_DIR$/../build/classes/issueVote/IssueVote.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/issueWork/IssueWork.class" afterPath="$PROJECT_DIR$/../build/classes/issueWork/IssueWork.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/uploadWork/UploadWork.class" afterPath="$PROJECT_DIR$/../build/classes/uploadWork/UploadWork.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../build/classes/vote/Vote.class" afterPath="$PROJECT_DIR$/../build/classes/vote/Vote.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/blog/IssueBlog.java" afterPath="$PROJECT_DIR$/../src/blog/IssueBlog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/issueVote/IssueVote.java" afterPath="$PROJECT_DIR$/../src/issueVote/IssueVote.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/issueWork/IssueWork.java" afterPath="$PROJECT_DIR$/../src/issueWork/IssueWork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/uploadWork/UploadWork.java" afterPath="$PROJECT_DIR$/../src/uploadWork/UploadWork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../src/vote/Vote.java" afterPath="$PROJECT_DIR$/../src/vote/Vote.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog.html" afterPath="$PROJECT_DIR$/blog.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.jsp" afterPath="$PROJECT_DIR$/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadBlogPage.js" afterPath="$PROJECT_DIR$/js/loadBlogPage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadVotePage.js" afterPath="$PROJECT_DIR$/js/loadVotePage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/loadWorkPage.js" afterPath="$PROJECT_DIR$/js/loadWorkPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/single.jsp" afterPath="$PROJECT_DIR$/single.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="WebContent.iws" />
@@ -29,11 +49,11 @@
         <entry file="file://$PROJECT_DIR$/js/loadBlogPage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="181" column="45" selection-start-line="181" selection-start-column="20" selection-end-line="181" selection-end-column="45" />
+              <caret line="137" column="60" selection-start-line="137" selection-start-column="60" selection-end-line="137" selection-end-column="60" />
               <folding>
-                <marker date="1467649673026" expanded="true" signature="4920:4933" placeholder="..." />
-                <marker date="1467649673026" expanded="true" signature="6410:6420" placeholder="..." />
-                <marker date="1467649673026" expanded="true" signature="6472:6482" placeholder="..." />
+                <marker date="1468378009635" expanded="true" signature="4884:4897" placeholder="..." />
+                <marker date="1468378009635" expanded="true" signature="6426:6436" placeholder="..." />
+                <marker date="1468378009635" expanded="true" signature="6488:6498" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -52,31 +72,49 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loadWorkPage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="loadWorkPage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/loadWorkPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="247" column="19" selection-start-line="238" selection-start-column="16" selection-end-line="247" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.38118812">
+              <caret line="170" column="14" selection-start-line="170" selection-start-column="14" selection-end-line="170" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1467790764241" expanded="true" signature="4521:4531" placeholder="..." />
-                <marker date="1467790764241" expanded="true" signature="4591:4601" placeholder="..." />
-                <marker date="1467790764241" expanded="true" signature="9857:9867" placeholder="..." />
-                <marker date="1467790764241" expanded="true" signature="9927:9937" placeholder="..." />
+                <element signature="n#!!block;n#studentPage#0" expanded="false" />
+                <marker date="1468315709259" expanded="true" signature="4523:4533" placeholder="..." />
+                <marker date="1468315709259" expanded="true" signature="4593:4603" placeholder="..." />
+                <marker date="1468315709259" expanded="true" signature="10019:10029" placeholder="..." />
+                <marker date="1468315709259" expanded="true" signature="10089:10099" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loadVotePage.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
+      <file leaf-file-name="single.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/single.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8055556">
-              <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
-              <folding>
-                <marker date="1467796876310" expanded="true" signature="12399:12409" placeholder="..." />
-                <marker date="1467796876310" expanded="true" signature="12465:12475" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="5.321429">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="personal.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/personal.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.535714">
+              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loadPersonalPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/loadPersonalPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,8 +122,8 @@
       <file leaf-file-name="blog.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.410714">
-              <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+            <state vertical-scroll-proportion="-3.7142856">
+              <caret line="43" column="44" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -104,22 +142,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1512" column="18" selection-start-line="1512" selection-start-column="18" selection-end-line="1512" selection-end-column="18" />
-              <folding />
+              <caret line="116" column="45" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
+              <folding>
+                <marker date="1468405527524" expanded="true" signature="552:739" placeholder="..." />
+                <marker date="1468405527524" expanded="true" signature="20788:20850" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.jsp">
+      <file leaf-file-name="loadVotePage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-79.39286">
-              <caret line="117" column="115" selection-start-line="117" selection-start-column="115" selection-end-line="117" selection-end-column="115" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="251" column="55" selection-start-line="251" selection-start-column="55" selection-end-line="251" selection-end-column="55" />
+              <folding>
+                <marker date="1468315738386" expanded="true" signature="12903:12913" placeholder="..." />
+                <marker date="1468315738386" expanded="true" signature="12969:12979" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,12 +187,14 @@
         <option value="$PROJECT_DIR$/single.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/loadDetailPage.js" />
-        <option value="$PROJECT_DIR$/single.jsp" />
-        <option value="$PROJECT_DIR$/js/loadBlogPage.js" />
         <option value="$PROJECT_DIR$/index.jsp" />
         <option value="$PROJECT_DIR$/js/loadWorkPage.js" />
-        <option value="$PROJECT_DIR$/blog.html" />
         <option value="$PROJECT_DIR$/js/loadVotePage.js" />
+        <option value="$PROJECT_DIR$/personal.jsp" />
+        <option value="$PROJECT_DIR$/js/loadPersonalPage.js" />
+        <option value="$PROJECT_DIR$/js/loadBlogPage.js" />
+        <option value="$PROJECT_DIR$/blog.html" />
+        <option value="$PROJECT_DIR$/single.jsp" />
       </list>
     </option>
   </component>
@@ -188,8 +234,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -218,7 +262,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -232,12 +276,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,6 +292,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/小木/workspace/interactingClass/WebContent/js/layout.js" />
+    <property name="jsx.switch.disabled" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -304,7 +351,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18887262" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18594436" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -355,21 +402,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/images/background1.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/background2.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/ban.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -559,7 +596,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="15" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -577,48 +613,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/single.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="114" column="50" selection-start-line="114" selection-start-column="50" selection-end-line="114" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="79" selection-start-line="9" selection-start-column="79" selection-end-line="9" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/loadDetailPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="236" column="38" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
-          <folding>
-            <element signature="e#629#4306#0" expanded="false" />
-            <marker date="1465978787176" expanded="true" signature="4350:4363" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-79.39286">
-          <caret line="117" column="115" selection-start-line="117" selection-start-column="115" selection-end-line="117" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/loadBlogPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="181" column="45" selection-start-line="181" selection-start-column="20" selection-end-line="181" selection-end-column="45" />
-          <folding>
-            <marker date="1467649673026" expanded="true" signature="4920:4933" placeholder="..." />
-            <marker date="1467649673026" expanded="true" signature="6410:6420" placeholder="..." />
-            <marker date="1467649673026" expanded="true" signature="6472:6482" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -638,10 +636,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.031353135">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="116" column="45" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
+          <folding>
+            <marker date="1468405527524" expanded="true" signature="552:739" placeholder="..." />
+            <marker date="1468405527524" expanded="true" signature="20788:20850" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="251" column="55" selection-start-line="251" selection-start-column="55" selection-end-line="251" selection-end-column="55" />
+          <folding>
+            <marker date="1468315738386" expanded="true" signature="12903:12913" placeholder="..." />
+            <marker date="1468315738386" expanded="true" signature="12969:12979" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/loadDetailPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="236" column="38" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
+          <folding>
+            <element signature="e#629#4306#0" expanded="false" />
+            <marker date="1465978787176" expanded="true" signature="4350:4363" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/loadPersonalPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/personal.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.535714">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.410714">
-          <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
+        <state vertical-scroll-proportion="-3.7142856">
+          <caret line="43" column="44" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -649,35 +703,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/layout.js">
+    <entry file="file://$PROJECT_DIR$/single.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.031353135">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="6" />
+        <state vertical-scroll-proportion="5.321429">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/loadBlogPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="60" selection-start-line="137" selection-start-column="60" selection-end-line="137" selection-end-column="60" />
+          <folding>
+            <marker date="1468378009635" expanded="true" signature="4884:4897" placeholder="..." />
+            <marker date="1468378009635" expanded="true" signature="6426:6436" placeholder="..." />
+            <marker date="1468378009635" expanded="true" signature="6488:6498" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/loadWorkPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="247" column="19" selection-start-line="238" selection-start-column="16" selection-end-line="247" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.38118812">
+          <caret line="170" column="14" selection-start-line="170" selection-start-column="14" selection-end-line="170" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1467790764241" expanded="true" signature="4521:4531" placeholder="..." />
-            <marker date="1467790764241" expanded="true" signature="4591:4601" placeholder="..." />
-            <marker date="1467790764241" expanded="true" signature="9857:9867" placeholder="..." />
-            <marker date="1467790764241" expanded="true" signature="9927:9937" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/loadVotePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8055556">
-          <caret line="244" column="18" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
-          <folding>
-            <marker date="1467796876310" expanded="true" signature="12399:12409" placeholder="..." />
-            <marker date="1467796876310" expanded="true" signature="12465:12475" placeholder="..." />
+            <element signature="n#!!block;n#studentPage#0" expanded="false" />
+            <marker date="1468315709259" expanded="true" signature="4523:4533" placeholder="..." />
+            <marker date="1468315709259" expanded="true" signature="4593:4603" placeholder="..." />
+            <marker date="1468315709259" expanded="true" signature="10019:10029" placeholder="..." />
+            <marker date="1468315709259" expanded="true" signature="10089:10099" placeholder="..." />
           </folding>
         </state>
       </provider>

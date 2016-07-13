@@ -47,54 +47,81 @@ public class IssueVote extends HttpServlet {
 		String name = session.getAttribute("username").toString();
 		//中文乱码
 		request. setCharacterEncoding("utf-8");
+		String option1 = null,option2 = null,option3 = null,option4 = null,option5 = null,option6 = null;
+		int multipleChoice = 0;
+		long expireTime = 0, issueTime = 0;
+		
+		
 		//获取投票主题
-		String theme = request.getParameter("theme");
-	System.out.println(theme);	
-		//选项
-		String option1 = request.getParameter("option1");
-		String option2 = request.getParameter("option2");
-		String option3 = request.getParameter("option3");
-		String option4 = request.getParameter("option4");
-		String option5 = request.getParameter("option5");
-		String option6 = request.getParameter("option6");
-	System.out.println(option3);
-		
-		//过期时间
-		int year = Integer.parseInt(request.getParameter("year"));
-		int month = Integer.parseInt(request.getParameter("month"));
-		int day = Integer.parseInt(request.getParameter("day"));
-		int hour = Integer.parseInt(request.getParameter("hour"));
-		int minute = Integer.parseInt(request.getParameter("minute"));
+		String theme = request.getParameter("theme");		
+	System.out.println("theme:"+theme);	
+		if(!theme.isEmpty()){ //不能用 == null
+			//选项
+			option1 = request.getParameter("option1");
+			option2 = request.getParameter("option2");
+			option3 = request.getParameter("option3");
+			option4 = request.getParameter("option4");
+			option5 = request.getParameter("option5");
+			option6 = request.getParameter("option6");
+		System.out.println(option3);
+			if(!option1.isEmpty()&&!option2.isEmpty()){
+				//单选多选
+				String choice = request.getParameter("multipleChoice");
+				if(!choice.isEmpty()){
+					multipleChoice = Integer.parseInt(choice);
+					System.out.println("multiplechoice:"+multipleChoice);
+					
+					//过期时间
+					int year = Integer.parseInt(request.getParameter("year"));
+					int month = Integer.parseInt(request.getParameter("month"));
+					int day = Integer.parseInt(request.getParameter("day"));
+					int hour = Integer.parseInt(request.getParameter("hour"));
+					int minute = Integer.parseInt(request.getParameter("minute"));
 
-		System.out.println(year);
-		System.out.println(day);
-		int second = 0;
-		Date expiretime = new Date(year-1900, month-1, day, hour, minute, second);
-		long expireTime = expiretime.getTime();
-	System.out.println(expireTime);
+					System.out.println(year);
+					System.out.println(day);
+					int second = 0;
+					Date expiretime = new Date(year-1900, month-1, day, hour, minute, second);
+					expireTime = expiretime.getTime();
+				System.out.println(expireTime);
+					//发布时间
+					Date time = new Date();
+					issueTime = time.getTime();
+				System.out.println(issueTime);
+					
+					if(expireTime <= issueTime){
+						//过期时间有误
+						out.println("<script type='text/javascript'>alert('请选择正确的过期时间！')</script>");
+						out.println("<script type='text/javascript'>window.location.href='./index.jsp?page=1';</script>");
+					}else{
+						//写入数据库
+						DB db = new DB();
+						String sqlInsert = "INSERT INTO vote(theme, issuePerson, issueTime, expireTime, option1, number1, option2, number2, option3, number3, option4, number4, option5, number5, option6, number6, multipleChoice) "
+								+ "VALUES(\""+theme+"\", \""+name+"\", \""+issueTime+"\", \""+expireTime+"\", \""+option1+"\", 0, \""+option2+"\", 0, \""+option3+"\", 0, \""+option4+"\", 0, \""+option5+"\", 0, \""+option6+"\", 0, "+multipleChoice+")";
+					System.out.println(sqlInsert);
+						db.query1(sqlInsert);
+					System.out.println("success");
+						
+					out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.jsp?page=1';</script>");
+						
+					}
+				}else{
+					out.println("<script>alert('未确定投票类型');</script>");
+					out.println("<script type='text/javascript'>window.location.href='./index.jsp?page=1';</script>");
+				}
 		
-		//单选多选
-		int multipleChoice = Integer.parseInt(request.getParameter("multipleChoice"));
-		
-		//发布时间
-		Date time = new Date();
-		long issueTime = time.getTime();
-	System.out.println(issueTime);
-		
-		if(expireTime <= issueTime){
-			//过期时间有误
-			out.println("<script type='text/javascript'>alert('请选择正确的过期时间！')</script>");
+			}else{
+				out.println("<script>alert('投票至少两个选项不能为空！');</script>");
+				out.println("<script type='text/javascript'>window.location.href='./index.jsp?page=1';</script>");
+			}
+			
+		}else{
+			out.println("<script type='text/javascript'>alert('投票主题不能为空！');window.location.href='./index.jsp?page=1';</script>");
 		}
 		
-		//写入数据库
-		DB db = new DB();
-		String sqlInsert = "INSERT INTO vote(theme, issuePerson, issueTime, expireTime, option1, number1, option2, number2, option3, number3, option4, number4, option5, number5, option6, number6, multipleChoice) "
-				+ "VALUES(\""+theme+"\", \""+name+"\", \""+issueTime+"\", \""+expireTime+"\", \""+option1+"\", 0, \""+option2+"\", 0, \""+option3+"\", 0, \""+option4+"\", 0, \""+option5+"\", 0, \""+option6+"\", 0, "+multipleChoice+")";
-	System.out.println(sqlInsert);
-		db.query1(sqlInsert);
-	System.out.println("success");
 		
-	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.jsp?page=1';</script>");
+		
+		
 	}
-
+	
 }

@@ -6,7 +6,7 @@
 			import="java.util.*,java.sql.*,java.io.IOException"
 			import="database.*"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Single</title>
+<title>Detail</title>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery-1.11.0.min.js"></script>
@@ -56,13 +56,9 @@ jQuery(document).ready(function($) {
 				</script>
 			<div class="navigation">
 				<ul class="navig">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="index.html" class="scroll">About</a></li>
-					<li><a href="index.html" class="scroll">Services</a></li>
-					<li><a href="index.html" class="scroll">WORKS </a></li>
-					<li><a href="index.html" class="scroll">CLIENTS</a></li>
-					<li><a href="blog.html" class="active">BLOG</a></li>
-					<li><a href="index.html" class="scroll">CONTACT</a></li>	
+					<li><a href="index.jsp">首页</a></li>
+					<li><a href="blog.html">博客</a></li>
+					<li><a href="personal.jsp">我的博客</a></li>
 				</ul>
 			
 			</div>

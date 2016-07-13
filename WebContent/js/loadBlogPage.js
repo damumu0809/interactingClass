@@ -144,12 +144,12 @@ function post(){
         }
 
 
-        //else{
-        //    txt =
-        //        '<div class="blog-desc">'+
-        //    '<div class="desc-left">'+
-        //    '<i class="des-p"></i>'
-        //}
+        if(hasAcc == 0){
+            txt =
+                '<div class="blog-desc">'+
+            '<div class="desc-left">';
+
+        }
 
 
            txt = txt +
@@ -158,7 +158,7 @@ function post(){
                 '<div class="desc-right">'+
                 '<h3>'+topic+'</h3>'+
                 '<ul class="blog-list" id="'+id+'">'+
-                '<li>'+ userName+'</li>'+
+                '<li><a href="personal.jsp?id='+id+'" id="user'+id+'">'+userName+'</a></li>'+
                 '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
                 '<li><a href="single.jsp?id='+id+'#comment" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
                 '</ul>'+

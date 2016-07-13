@@ -69,6 +69,10 @@ public class Vote extends HttpServlet {
     				if(multipleChoice == 0){
     					//单选
     					String option = request.getParameter("vote");
+    					System.out.println(option);
+    					if(option==null){
+    						out.print("<script type='text/javascript'>alert('请选择一个选项！');window.location.href='./index.jsp?page=1';</script>");
+    					}else{
     					int optionId = (int)(option.charAt(6))-48;
     				System.out.println(optionId);
     					String optionNum = "number"+optionId;
@@ -81,21 +85,27 @@ public class Vote extends HttpServlet {
     					String sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId+",\""+time+"\",\""+name+"\")";
     					System.out.println(sql2);
     					db.query1(sql2);
+    					out.print("<script type='text/javascript'>alert('投票成功！');window.location.href='./index.jsp?page=1';</script>");
+    					}
     				}else{
     					//多选
     					//未选项为null 已选项为value
     					int optionId[] = new int[6];
+    					int i = 1, j=0;
     					String optionNum;
-    					for(int i=1,j=0; i <=6; i++){
+    					for(i=1,j=0; i <=6; i++){
     						if(request.getParameter("check"+i)!= null){
     							optionId[j]=i;
     							j++;
     						}
     					}
-    					
+    					if(j==0){
+    						//没有选择任何一项
+    						out.print("<script type='text/javascript'>alert('请选择至少一个选项！');window.location.href='./index.jsp?page=1';</script>");
+    					}else{
     				  	String sql1;
     				  	String sql2;
-    				  	for(int j=0; j<6; j++){
+    				  	for(j=0; j<6; j++){
     				  		if(optionId[j]!=0){
     				  			//值为选项num
     				  			optionNum = "number"+optionId[j];
@@ -106,10 +116,12 @@ public class Vote extends HttpServlet {
     							sql2 = "INSERT INTO voteRecord(voteId, optionId, voteTime, person) VALUES("+voteId+","+optionId[j]+",\""+time+"\",\""+name+"\")";
     							System.out.println(sql2);
     							db.query1(sql2);
+    							out.print("<script type='text/javascript'>alert('投票成功！');window.location.href='./index.jsp?page=1';</script>");
     				  		}
     				  	}
+    					}
     				}
-    				out.print("<script type='text/javascript'>alert('投票成功！');window.location.href='./index.jsp?page=1';</script>");
+    				
     			}
     			
       			

@@ -32,7 +32,7 @@ function post1(){
         var hasVoted, hasExpired, issuePerson, issueTime, expireTime;
 
         var themetxt;
-
+        var voteId_issuePerson = new Array();
         //遍历数组list
         list.forEach(function(item, index, array){
             txt = '<div class="panel panel-default">'+
@@ -225,6 +225,7 @@ function post1(){
                 $("#vote"+voteId+" h4").append(themetxt);
                 $("#voteA").text(theme);
                 $("#voteA").attr("id","voteA"+voteId);
+                $("#deletevoteOne").attr("id", "deletevote"+voteId);
                 //空白项不显示
                                     if(option6 == ""){
                                         $("#panelBody input:eq(5)").remove();
@@ -241,24 +242,34 @@ function post1(){
 
             }
 
-        $("#panelBody").attr("id","panelBody"+voteId);
-    alert(voteId);
-        $("#deletevote"+voteId).click(function(){
-            alert("确认删除该投票吗？")
-            alert(issuePerson);
-            alert(voteId);//不是正确的值
             var deleteVote = {"voteid":voteId, "issuePerson":issuePerson};
-            $.post("/interactingClass/DeleteVote", deleteVote, function(res){
-                var message = $.parseJSON(res);
-                var code = message.code;
-                if(code == 0){
-                    //删除成功
-                    alert("删除成功！");
-                    window.location.reload();
-                }
-            });
-        }) ;
+            voteId_issuePerson.push(deleteVote);
+            $("#deletevote"+voteId).click(function() {
+                var id = $(this).attr("id");//这样才能获取到正确ID
+                voteId = new String(id).substring(10);
+                voteId_issuePerson.forEach(function (item, index, array) {
+                    if (voteId == item.voteid) {
+                        issuePerson = item.issuePerson;
+
+                        $.post("/interactingClass/DeleteVote", deleteVote, function(res){
+                            var message = $.parseJSON(res);
+                            var code = message.code;
+                            if(code == 0){
+                                //删除成功
+                                alert("删除成功！");
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+
+
+            }) ;
+        $("#panelBody").attr("id","panelBody"+voteId);
+
+
         });
+
 
 
         <!-- 分页-->

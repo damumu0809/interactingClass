@@ -50,6 +50,9 @@ public class IssueWork extends HttpServlet {
 		//获取作业主题和deadline时间
 		String theme = request.getParameter("theme");
 	System.out.println(theme);
+		if(theme.isEmpty()){
+			out.print("<script type='text/javascript'>alert('作业内容不能为空！');window.location.href='./index.jsp?page=3';</script>");
+		}else{
 		String year = request.getParameter("year");
 		String month = request.getParameter("month");
 		String day = request.getParameter("day");
@@ -65,6 +68,10 @@ public class IssueWork extends HttpServlet {
 		Date date = new Date();
     	long issueTime = date.getTime();
     	
+    	if(deadline <= issueTime){
+    		out.print("<script type='text/javascript'>alert('请设置正确的deadline！');window.location.href='./index.jsp?page=3';</script>");
+    	}else{
+    	
     	//连接数据库
     	DB db = new DB();
     	String insert = "INSERT INTO IssueWork(theme, deadline, time) VALUES(\""+theme+"\", \""+deadline+"\",\""+issueTime+"\")";
@@ -72,6 +79,8 @@ public class IssueWork extends HttpServlet {
     	db.query1(insert);
 
     	out.print("<script type='text/javascript'>alert('发布成功！');window.location.href='./index.jsp?page=3';</script>");
+    	}
+	}
 	}
 
 }

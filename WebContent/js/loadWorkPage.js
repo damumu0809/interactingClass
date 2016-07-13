@@ -20,9 +20,11 @@ function studentPage(){
         }
         $("#homeworkAccordion").empty();
         var themetxt;
+
         //遍历数组
         list.forEach(function (item, index, array) {
             //获取Json数据
+
             id = item.taskNum;
             theme = item.theme;
             finish = item.finish;
@@ -166,7 +168,7 @@ function teacherPage(){
     var theme, hrefs_files, taskNum, hrefs, files, href, name, time, deadLine, id;
     //taskNum为显示的第几次作业
     //id表示真正的数据库里面的id
-
+    var idMax;
     $.post("/interactingClass/TeacherPage",workpagedata, function(res){
         var message = $.parseJSON(res);
         var list = message.list;
@@ -177,7 +179,7 @@ function teacherPage(){
             $("#homework").append(txt2);
         }
         $("#homeworkAccordion").empty();
-
+        idMax = list[0].taskNum;
         //遍历数组
         list.forEach(function(item, index, array ){
 
@@ -234,9 +236,13 @@ function teacherPage(){
 
             $("#panelBody").attr("id","panelBody"+taskNum);
 
+
+        });
+        for(id;id<=idMax;id++){
             $("#deleteWork"+id).click(function(){
-                alert("确定要删除吗？");
-                var workid = {"workId":id};
+                var id = new String($(this).attr("id"));
+                workId = id.substring(10);
+                var workid = {"workId":workId};
                 $.post("/interactingClass/DeleteWork", workid, function(res){
                     var message = $.parseJSON(res);
                     var code = message.code;
@@ -247,7 +253,8 @@ function teacherPage(){
                     }
                 });
             });
-        });
+        }
+
 
         <!-- 分页-->
         var txtpage = '<div class="pagnations">'+

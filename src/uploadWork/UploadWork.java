@@ -2,7 +2,7 @@ package uploadWork;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -116,6 +117,7 @@ public class UploadWork extends HttpServlet {
 	      String contentType;
 	      boolean isInMemory;
 	      long sizeInBytes;
+	      int flag = 0;//标志是否有文件上传
 	      
 	      for(FileItem fi :fileItems){
 	      
@@ -126,6 +128,9 @@ public class UploadWork extends HttpServlet {
 	        	//Object taskNum = request.getAttribute("taskNum");
 	            fieldName = new String(fi.getFieldName().getBytes("GB2312"),"iso8859-1");
 	            fileName = fi.getName();
+	            if(!fileName.isEmpty()){
+	            	flag = 1;
+	          System.out.println(fileName);
 	            contentType = fi.getContentType();
 	            isInMemory = fi.isInMemory();
 	            sizeInBytes = fi.getSize();
@@ -139,11 +144,16 @@ public class UploadWork extends HttpServlet {
 	            	filePath = filePath + fileName.substring(fileName.lastIndexOf("\\")+1);
 	                file = new File(filePath ) ;
 	            }
-	            System.out.println(filePath);
+	            System.out.println("路径"+filePath);
+	            
 	            fi.write( file ) ;
 	            fileName = fileName.substring( fileName.lastIndexOf("\\")+1);
 	            out.println("Uploaded Filename: " + fileName + "<br>");
 	        System.out.println("1");
+	            }else{
+	            	flag = 0;
+	            	out.println("<script>alert('请选择一个文件！');window.location.href='./index.jsp?page=3';</script>");
+	            }
 	            
 	         }else {
 	        	 
@@ -156,63 +166,82 @@ public class UploadWork extends HttpServlet {
 			}
 	       
 	      }
-	    //上传时间
-      	Date date = new Date();
-      	long uploadTime = date.getTime();
-      	
-      	//连接数据库
-	      	DB db = new DB();
 	      
-          String sqlInsert;
-          String sqlSelect;
-          
-          System.out.println(map.get("taskNum"));
-          int taskNum = Integer.parseInt(map.get("taskNum"));
-          
-          //判断是否过期
-          sqlSelect = "SELECT * FROM issueWork WHERE id =" + taskNum;
-          ResultSet rs = db.query2(sqlSelect);
-          while(rs.next()){
-        	  if(uploadTime >rs.getLong("deadLine")){
-        		  //过期不能提交
-        		  out.print("<script type='text/javascript'>alert('作业已经超期！');window.location.href='./index.html';</script>");
-        	  }
-          }
-      	
-          //写入数据库
-          System.out.println(filePath);
-          sqlInsert = "INSERT INTO homework(file_name, href, owner, time, taskNum)"+
-          " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+name+"\",\""+uploadTime+"\",\""+taskNum+"\")";
-     
-          /*
-           * \会被转义，但是'\'也是正则表达式中的转义字符（replaceAll 的参数就是正则表达式），
-           * 需要用两个代表一个。所以：\\\\被java转换成\\,\\又被正则表达式转换成\。
-           */
-          sqlInsert = sqlInsert.replaceAll("\\\\","/");
-    System.out.println(sqlInsert);
-    System.out.println("3");      
-           db.query1(sqlInsert);
-        //实现alert之后再跳转页面
-  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./index.jsp?page=3';</script>");
-
-	      
-	      /*
-	       * 执行完executeQuery后不能再执行executeQuery
-	       */
+	    if(flag == 1){
+	    	
+	    	//上传时间
+	      	Date date = new Date();
+	      	long uploadTime = date.getTime();
+	      	
+	      	//连接数据库
+		      	DB db = new DB();
+		      
+	          String sqlInsert;
+	          String sqlSelect;
+	          
+	          System.out.println(map.get("taskNum"));
+	          int taskNum = Integer.parseInt(map.get("taskNum"));
+	          
+//	          //判断是否过期
+//	          sqlSelect = "SELECT * FROM issueWork WHERE id =" + taskNum;
+//	          ResultSet rs = db.query2(sqlSelect);
+//	         
+//	          while(rs.next()){
+//	        	  if(uploadTime >rs.getLong("deadLine")){
+//	        		  //过期不能提交
+//	        		  out.print("<script type='text/javascript'>alert('作业已经超期！');window.location.href='./index.html';</script>");
+//	        	  }
+//	          
+//	          }
+	          
+	          //写入数据库
+	          System.out.println(filePath);
+	          sqlInsert = "INSERT INTO homework(file_name, href, owner, time, taskNum)"+
+	          " VALUES (\""+fileName+"\",\""+ filePath +"\",\""+name+"\",\""+uploadTime+"\",\""+taskNum+"\")";
 	     
-	         	
-	      out.println("</body>");
-	      out.println("</html>");
+	          /*
+	           * \会被转义，但是'\'也是正则表达式中的转义字符（replaceAll 的参数就是正则表达式），
+	           * 需要用两个代表一个。所以：\\\\被java转换成\\,\\又被正则表达式转换成\。
+	           */
+	          sqlInsert = sqlInsert.replaceAll("\\\\","/");
+	    System.out.println(sqlInsert);
+	    System.out.println("3");      
+	           db.query1(sqlInsert);
+	        //实现alert之后再跳转页面
+	  	    out.print("<script type='text/javascript'>alert('上传成功！');window.location.href='./index.jsp?page=3';</script>");
+
+		      
+		      /*
+		       * 执行完executeQuery后不能再执行executeQuery
+		       */
+		     
+		     
+		    
+		   
+		   
+		    
+		    //response.sendRedirect("./index.html");
+		    //页面的位置
+		    
+		    
+		    
+		}
+	
+	      
+	  
+
+
+ 
 	    
-	   }catch(Exception ex) {
-	       System.out.println(ex);
-	   }
-	   
-	    
-	    //response.sendRedirect("./index.html");
-	    //页面的位置
-	    
-	    
-	    
-	}
+} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (FileUploadException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+} catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+}
 }
