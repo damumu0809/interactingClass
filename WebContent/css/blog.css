@@ -78,3 +78,19 @@ ul.page-list {
 .pagnations .col-md-2 button {
 	width: 50px !important;
 }
+
+table{
+    text-align: center;
+    margin-left: 30%;
+}
+
+#userNum {
+    border: none !important;
+}
+#blogNum{
+    border: none !important;
+}
+
+td{
+    border:solid 1px;
+}

@@ -17,6 +17,7 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Google Fonts -->
 <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href="css/blog.css" rel="stylesheet" />
 <!-- Script Starts Here -->
 <!----//End-slider-script---->
 <!----Calender -------->
@@ -59,6 +60,45 @@ jQuery(document).ready(function($) {
 					<li><a href="index.jsp">首页</a></li>
 					<li><a href="blog.html">博客</a></li>
 					<li><a href="personal.jsp">我的博客</a></li>
+	<li><a href="statistic.html">博客统计</a></li>
+	<li><a href="javascript:" data-toggle="modal" data-target="#myModal"  >写博客</a></li>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="myModalLabelVote">写博客</h4>
+	</div>
+
+	<form class="form-horizontal"  action="/interactingClass/IssueBlog" method="post" enctype="multipart/form-data">
+	<div class="modal-body">
+	<div class="form-group">
+	<div class="col-sm-offset-1 col-sm-9">
+	<textarea class="form-control" rows="1" placeholder="请输入博客主题..." name="topic"></textarea>
+	</div>
+	</div>
+	<div class="form-group">
+	<div class="col-sm-offset-1 col-sm-9">
+	<textarea class="form-control" rows="4" placeholder="请输入文章内容..." name="text"></textarea>
+	</div>
+	</div>
+	<!-- 添加图片、音频、视频-->
+	<div class="form-group">
+	<div class="col-sm-offset-1 col-sm-9">
+	<!-- 设计原则是只添加图片视频音频中的一种-->
+	<input type="file" multiple="multiple" name="picture" id="picture"/>可添加多张图片或一段视频、音频
+
+	</div>
+	</div>
+	</div>
+	<div class="modal-footer">
+	<button class="btn btn-primary btn-sm " type="submit" data-toggle="modal" data-target="#myModal" id="issue">发布</button>
+	</div>
+	</form>
+
+	</div>
+	</div>
+	</div>
 				</ul>
 			
 			</div>
