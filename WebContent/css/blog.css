@@ -85,9 +85,11 @@ table{
 }
 
 #userNum {
+    text-align: left !important;
     border: none !important;
 }
 #blogNum{
+    text-align: left !important;
     border: none !important;
 }
 
