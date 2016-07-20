@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/index.css">
     <link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
+
 <%@page contentType="text/html; charset=UTF-8" language="java"
     import="java.text.*,org.json.JSONObject.*,java.util.ArrayList,java.io.PrintWriter"
     import="java.util.*,java.sql.*,java.io.IOException"
@@ -101,18 +102,19 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation">
-                        <a href="#vote" aria-controls="vote" role="tab" data-toggle="tab" aria-expanded="false">
+                    <li role="presentation" class="active">
+                        <a href="#vote" aria-controls="vote" role="tab" data-toggle="tab" aria-expanded="true">
                         <span class="glyphicon glyphicon-stats" aria-hidden="false"></span>
                         投票
                         </a>
                     </li>
-                    <li role="presentation" class="active" >
+                    <!--  <li role="presentation" class="active" >
                         <a href="#signin" aria-controls="signin" role="tab" data-toggle="tab" aria-expanded="true">
                             <span class="glyphicon glyphicon-sunglasses" aria-hidden="false"></span>
                             签到
                         </a>
                     </li>
+                    -->
                     <li role="presentation" >
                         <a href="#homework" aria-controls="homework" role="tab" data-toggle="tab" onclick="pageLoad();" aria-expanded="false">
                             <span class="glyphicon glyphicon-edit" aria-hidden="false"></span>
@@ -295,10 +297,10 @@
 
 
 
-                    <!-- 签到模块-->
+                    <!-- 签到模块
                     <div role="tabpanel" class="tab-pane active" id="signin">
                
-                    </div>
+                    </div>-->
                     
 
 		            <!-- 作业模块 -->
@@ -352,25 +354,25 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/loadVotePage.js"></script> 
 <script src="js/loadWorkPage.js"></script>
- <%int  pagen= 2;
+ <%int  pagen= 1;
      if(request.getParameter("page") == null){
-    	pagen = 2;
+    	pagen = 1;
     }else{
     	pagen = Integer.parseInt(request.getParameter("page"));
     }
     
     	    
-    if(pagen == 1){
-    	out.println("<script>$('li:eq(1)').removeClass('active');alert('1');$('li:eq(1) a').attr('aria-expanded', 'false');$('.tab-pane:eq(1)').removeClass('active');"+
-    		"$('li:eq(0)').addClass('active');$('li:eq(0) a').attr('aria-expanded', 'true');$('.tab-pane:eq(0)').addClass('active');</script>");
+    if(pagen == 2){
+    	out.println("<script>$('li:eq(0)').removeClass('active');alert('0');$('li:eq(0) a').attr('aria-expanded', 'false');$('.tab-pane:eq(0)').removeClass('active');"+
+    		"$('li:eq(1)').addClass('active');$('li:eq(1) a').attr('aria-expanded', 'true');$('.tab-pane:eq(1)').addClass('active');</script>");
     }
     //if(pagen == 2){
     	//out.println("<script>$('li:eq(1)').addClass('active');</script>");
     //}
-    if(pagen == 3){
-    	out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(1) a').attr('aria-expanded', 'false');$('.tab-pane:eq(1)').removeClass('active');"+
-        		"$('li:eq(2)').addClass('active');$('li:eq(2) a').attr('aria-expanded', 'true');$('.tab-pane:eq(2)').addClass('active');</script>");
-    }
+    //if(pagen == 3){
+    	//out.println("<script>$('li:eq(1)').removeClass('active');$('li:eq(1) a').attr('aria-expanded', 'false');$('.tab-pane:eq(1)').removeClass('active');"+
+        //		"$('li:eq(2)').addClass('active');$('li:eq(2) a').attr('aria-expanded', 'true');$('.tab-pane:eq(2)').addClass('active');</script>");
+    //}
  %>
 </body>
 </html>

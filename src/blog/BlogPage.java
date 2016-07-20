@@ -78,7 +78,7 @@ public class BlogPage extends HttpServlet {
 		ResultSet rs = db.query2(sql1);
 		try {
 			while(rs.next()){
-				count = rs.getInt("id");
+				count++;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -11,11 +11,11 @@
             var message = $.parseJSON(res);
             var code = message.code;
 
-            //if(code == 1){
-            //    alert("请先登录！");
-            //    window.location.href = "login.jsp";
-            //
-            //}
+            if(code == 2){
+                alert("请先登录！");
+                window.location.href = "login.jsp";
+            }
+
 
             var list= message.list;
             var user = message.user;
@@ -156,22 +156,47 @@
                 }
 
 
-                txt = txt +
-                    '<p style="font-size: 2%">'+issueTime+'</p>'+
-                    '</div>'+
-                    '<div class="desc-right">'+
-                    '<h3>'+topic+'</h3>'+
-                    '<ul class="blog-list" id="'+id+'">'+
-                    '<li><a href="personal.jsp?id='+id+'" id="user'+id+'">'+userName+'</a></li>'+
-                    '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
-                    '<li><a href="single.jsp?id='+id+'#comment" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
-                    '</ul>'+
-                    '<span class="blog-line"></span>'+
-                    '<p class="head-sub">'+text.substr(0, 50)+'</p>'+
-                    '<div class="read-more">'+
-                    '<a href="single.jsp?id='+id+'">Read More</a>'+
-                    '</div>'+
-                    '</div>';
+                if(code == 0){
+                    //添加删除功能
+                    txt = txt +
+                        '<p style="font-size: 2%">'+issueTime+'</p>'+
+                        '</div>'+
+                        '<div class="desc-right">'+
+                        '<h3>'+topic+'</h3>'+
+                        '<ul class="blog-list" id="'+id+'">'+
+                        '<li><a href="personal.jsp?id='+id+'" id="user'+id+'">'+userName+'</a></li>'+
+                        '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
+                        '<li><a href="single.jsp?id='+id+'#comment" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
+                        '</ul>'+
+                        '<span class="blog-line"></span>'+
+                        '<p class="head-sub">'+text.substr(0, 50)+'</p>'+
+                        '<div class="read-more">'+
+                        '<a href="single.jsp?id='+id+'">Read More</a>'+
+                        '</div>'+
+                        '<div class="read-more">'+
+                        '<button id="delete'+id+'">删除</button>'+
+                        '</div>'+
+                        '</div>';
+                }
+                if(code == 1){
+                    txt = txt +
+                        '<p style="font-size: 2%">'+issueTime+'</p>'+
+                        '</div>'+
+                        '<div class="desc-right">'+
+                        '<h3>'+topic+'</h3>'+
+                        '<ul class="blog-list" id="'+id+'">'+
+                        '<li><a href="personal.jsp?id='+id+'" id="user'+id+'">'+userName+'</a></li>'+
+                        '<li><a href="javascript:" id="like'+id+'"><span class="person"></span></a> '+like+ '赞</li>'+
+                        '<li><a href="single.jsp?id='+id+'#comment" id="comment'+id+'"><span class="cmt"></span></a>'+ comment+ '评论</li>'+
+                        '</ul>'+
+                        '<span class="blog-line"></span>'+
+                        '<p class="head-sub">'+text.substr(0, 50)+'</p>'+
+                        '<div class="read-more">'+
+                        '<a href="single.jsp?id='+id+'">Read More</a>'+
+                        '</div>'+
+                        '</div>';
+                }
+
                 $("#blog").append(txt);
 
 
@@ -188,7 +213,29 @@
                     });
                 });
 
-                //$("#comment"+id).click(function(){
+                if(code == 0){
+                    var deleteBlog = {"id":id, "user":userName};
+                    $("#delete"+id).click(function() {
+                        var id = $(this).attr("id");//这样才能获取到正确ID
+                        id = new String(id).substring(6);
+                        //alert(id);
+                        $.post("/interactingClass/DeleteBlog", deleteBlog, function (res) {
+                            var message = $.parseJSON(res);
+                            var code = message.code;
+                            //alert(code);
+                            if (code == 0) {
+                                //删除成功
+                                alert("删除成功！");
+                                window.location.reload();
+                            }
+                        });
+                    });
+                }
+
+
+
+
+                    //$("#comment"+id).click(function(){
                 //    var data={"id":id};
                 //    $.post("/interactingClass/Comment",data);
                 //});

@@ -52,11 +52,11 @@ span.blog-line {
     margin-bottom: 3.5em;
 }
 .pagnations .col-md-2 {
-    width: 150px;
-    height: 40px;
-    display: inline-block;
-    padding: 5px;
-}
+                               width: 150px;
+                               height: 40px;
+                               display: inline-block;
+                               padding: 5px;
+                           }
 ul.page-list {
     padding: 0;
     border: 1px solid;
@@ -66,17 +66,17 @@ ul.page-list {
     height: 40px;
 }
 .page-list li:first-child {
-	float:left;
+    float:left;
 }
 .page-list li:last-child {
-	float:right;
+    float:right;
 }
 .blog-list .pagnations {
-	text-align:center;
-	margin: 70px;
+    text-align:center;
+    margin: 70px;
 }
 .pagnations .col-md-2 button {
-	width: 50px !important;
+    width: 50px !important;
 }
 
 table{

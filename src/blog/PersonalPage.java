@@ -62,12 +62,35 @@ public class PersonalPage extends HttpServlet {
 		
 		int blogId = Integer.parseInt(request.getParameter("user"));
 		String user = null;
+		
+		JSONObject message = new JSONObject();
+		
 		if(blogId == 0){
 			//访问自己的中心
 			HttpSession session = request.getSession();
 			System.out.println(session.getAttribute("username"));
+			if(session.getAttribute("username") == null){
+				try {
+					message.put("code", 2);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			user = session.getAttribute("username").toString();
+			try {
+				message.put("code", 0);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}else{
+			try {
+				message.put("code", 1);
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			String sql1 = "SELECT user_name FROM blog WHERE id= '"+blogId+"' ";
 			ResultSet rs1 = db.query2(sql1);
 			
@@ -115,7 +138,7 @@ public class PersonalPage extends HttpServlet {
 		List allAcc = null;
 		
 		
-		JSONObject message = new JSONObject();
+		
 		
 		try {
 			while(rs2.next()){
