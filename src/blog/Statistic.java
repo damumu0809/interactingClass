@@ -1,5 +1,6 @@
 package blog;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import database.DB;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 /**
  * Servlet implementation class Statistic
@@ -53,6 +60,28 @@ public class Statistic extends HttpServlet {
 		
 		DB db = new DB();
 		
+		//打开指定的文件  
+		String path = getServletContext().getInitParameter("excel-file");
+        System.out.println(path);
+        path = path+"file.xls";
+		WritableWorkbook book = Workbook.createWorkbook(new File(path));  
+		  
+		//创键Excel表格中的第一个表,命名为"blog"  
+		WritableSheet wsheet = book.createSheet("blog", 0);  
+		
+		try {  
+			
+			wsheet.addCell(new Label(0, 0, "总用户"));  
+			wsheet.addCell(new Label(4, 0, "总博客"));  
+			wsheet.addCell(new Label(0, 1, "用户名"));  
+			wsheet.addCell(new Label(1, 1, "已发博客"));  
+			wsheet.addCell(new Label(2, 1, "赞")); 
+			wsheet.addCell(new Label(3, 1, "评论"));  
+  
+			} catch (Exception e) {  
+			System.out.println(e);  
+			}  
+		
 		//先从userinfo里获取username
 		//再从blog表中查询发表博客数、获得总赞及评论
 		
@@ -87,6 +116,11 @@ public class Statistic extends HttpServlet {
 				System.out.println(username+"博客数"+blog);
 				blogNum = blogNum + blog;
 				
+				wsheet.addCell(new Label(0, userNum+1, username));  
+				wsheet.addCell(new jxl.write.Number(1, userNum+1, blog));  
+				wsheet.addCell(new jxl.write.Number(2, userNum+1, likeNum)); 
+				wsheet.addCell(new jxl.write.Number(3, userNum+1, commentNum));  
+				
 				userList = new JSONObject();
 				userList.put("username", username);
 				userList.put("blog", blog);
@@ -101,9 +135,29 @@ public class Statistic extends HttpServlet {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (RowsExceededException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (WriteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		System.out.println("总用户数："+userNum);
 		System.out.println("总博客数："+blogNum);
+		
+		try {
+			wsheet.addCell(new jxl.write.Number(1, 0, userNum));
+			wsheet.addCell(new jxl.write.Number(5, 0, blogNum)); 
+			// 写入数据并关闭文件  
+			book.write();  
+			book.close();
+		} catch (RowsExceededException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (WriteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
 		
 		JSONObject message = new JSONObject();
 		try {

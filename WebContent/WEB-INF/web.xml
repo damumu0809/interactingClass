@@ -14,6 +14,11 @@
     <param-name>file-upload</param-name>
     <param-value>E:\apache-tomcat-8.0.33-windows-x64\apache-tomcat-8.0.33\webapps\data\</param-value>
   </context-param>
+  <context-param>
+    <description>Location to store excel</description>
+    <param-name>excel-file</param-name>
+    <param-value>E:\apache-tomcat-8.0.33-windows-x64\apache-tomcat-8.0.33\webapps\excel\</param-value>
+  </context-param>
   <servlet>
     <servlet-name>SmartUploadServlet</servlet-name>
     <servlet-class>com.upload.SmartUploadServlet</servlet-class>

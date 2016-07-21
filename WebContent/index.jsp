@@ -129,7 +129,7 @@
 
     <div class="tab-content">
                     <!-- 投票模块-->
-                    <div role="tabpanel" class="tab-pane" id="vote">
+                    <div role="tabpanel" class="tab-pane active" id="vote">
                         <!-- 投票内容展示-->
                         <!-- 发布投票-->
                         <button type="button" class="btn btn-group-lg  buttonPosition" data-toggle="modal" data-target="#myModal">
@@ -354,7 +354,7 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/loadVotePage.js"></script> 
 <script src="js/loadWorkPage.js"></script>
- <%int  pagen= 1;
+ <!--  <%int  pagen= 1;
      if(request.getParameter("page") == null){
     	pagen = 1;
     }else{
@@ -363,8 +363,7 @@
     
     	    
     if(pagen == 2){
-    	out.println("<script>$('li:eq(0)').removeClass('active');alert('0');$('li:eq(0) a').attr('aria-expanded', 'false');$('.tab-pane:eq(0)').removeClass('active');"+
-    		"$('li:eq(1)').addClass('active');$('li:eq(1) a').attr('aria-expanded', 'true');$('.tab-pane:eq(1)').addClass('active');</script>");
+    	out.println("<script>$('li:eq(0)').removeClass('active');$('li:eq(0) a').attr('aria-expanded', 'false');$('.tab-pane:eq(0)').removeClass('active');$('li:eq(1)').addClass('active');$('li:eq(1) a').attr('aria-expanded', 'true');$('.tab-pane:eq(1)').addClass('active');</script>");
     }
     //if(pagen == 2){
     	//out.println("<script>$('li:eq(1)').addClass('active');</script>");
@@ -374,5 +373,6 @@
         //		"$('li:eq(2)').addClass('active');$('li:eq(2) a').attr('aria-expanded', 'true');$('.tab-pane:eq(2)').addClass('active');</script>");
     //}
  %>
+ -->
 </body>
 </html>
